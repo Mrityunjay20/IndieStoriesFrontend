@@ -1,9 +1,11 @@
-const buttons = [
-    { name: "Home", link: "#" },
-    { name: "Our Stori", link: "#" },
-    { name: "Our Impact", link: "#" },
+const buttons1 = [
+    { name: "Home", link: "/" },
+    { name: "Our Stori", link: "/ourstori" },
+    { name: "Our Impact", link: "/ourimpact" },
+  ];
+  const buttons2 = [
     { name: "Shop", link: "#" },
-    { name: "Connect", link: "#" },
+    { name: "Connect", link: "/connect" },
     { name: "Blog", link: "#" }
   ];
 const socialMediaLinks = [
@@ -13,8 +15,8 @@ const socialMediaLinks = [
     { href: "#", iconClass: "fa-brands fa-youtube" }
   ];
   const footerInformation = [
-    { name: "Our Stori", href: "#" },
-    { name: "Connect", href: "#" },
+    { name: "Our Stori", href: "/ourstori" },
+    { name: "Connect", href: "/connect" },
     { name: "Terms of Service", href: "#" },
     { name: "Refunds Cancellations", href: "#" },
     { name: "Privacy policy", href: "#" },
@@ -22,9 +24,9 @@ const socialMediaLinks = [
   ];
   
   const footerDiscover = [
-    { name: "Our Impact", href: "#" },
+    { name: "Our Impact", href: "/ourimpact" },
     { name: "Shop", href: "#" },
     { name: "Blog", href: "#" }
   ];
-export { buttons, socialMediaLinks, footerInformation, footerDiscover };
+export { buttons1,buttons2, socialMediaLinks, footerInformation, footerDiscover };
   
