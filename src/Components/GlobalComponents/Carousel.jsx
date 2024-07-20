@@ -4,6 +4,8 @@ export default function Carousel({
   autoSlide = true,
   autoSlideInterval = 8000,
   slides,
+  size = { width: "100%", height: "550px" },
+  imagesToShow = 1,
 }) {
   const [curr, setCurr] = useState(0);
 
@@ -17,15 +19,21 @@ export default function Carousel({
     const slideInterval = setInterval(next, autoSlideInterval);
     return () => clearInterval(slideInterval);
   }, [autoSlide, autoSlideInterval]);
-
+  
   return (
-    <div className="overflow-hidden relative max-w-max max-h-[550px]">
+    <div className="overflow-hidden relative" style={{ maxWidth: size.width, maxHeight: size.height }}>
       <div
         className="flex transition-transform ease-out duration-500"
-        style={{ transform: `translateX(-${curr * 100}%)` }}
+        style={{ transform: `translateX(-${curr * (100 / imagesToShow)}%)`, width: `${slides.length * (100 / imagesToShow)}%` }}
       >
         {slides.map((img, index) => (
-          <img key={index} src={img} alt={`Slide ${index}`} className=" max-w-full object-cover " />
+          <img
+            key={index}
+            src={img}
+            alt={`Slide ${index}`}
+            className="object-cover"
+            style={{ width: `${100 / imagesToShow}%`, height: "100%" }}
+          />
         ))}
       </div>
       <div className="absolute inset-0 flex items-center justify-between p-4">
@@ -52,4 +60,5 @@ export default function Carousel({
       </div> */}
     </div>
   );
+  
 }
