@@ -3,7 +3,10 @@ import './App.css'
 import './index.css'
 import ErrorPage from './Layout/Error'
 import Rootlayout from './Layout/RootLayout'
+import ConnectPage from './Pages/Connect'
 import HomePage from './Pages/HomePage'
+import OurImpactPage from './Pages/OurImpact'
+import OurStoryPage from './Pages/OurStori'
 
 function App() {
 
@@ -15,7 +18,18 @@ function App() {
       children:[{
         index:true,
         element:<HomePage/>
-
+      },
+      {
+        path:'/ourstori',
+        element:<OurStoryPage/>
+      },
+      {
+        path:'/ourimpact',
+        element:<OurImpactPage/>
+      },
+      {
+        path:'/connect',
+        element:<ConnectPage/>
       }]
     }
   ])
