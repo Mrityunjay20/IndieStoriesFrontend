@@ -18,7 +18,7 @@ export default function NavBar(){
         {buttons1.map((button, index) => (
           <a className="px-4 mx-2 text-lg font-semibold text-customBrown w-max flex items-center transform transition-transform duration-300 ease-in-out hover:scale-125" key={index} href={button.link}>{button.name}</a>
         ))}
-        <img className="h-24 mx-auto mx-24" src={logo}></img>
+        <img className="h-24 mx-24" src={logo}></img>
         {buttons2.map((button, index) => (
           <a className="px-4 mx-2 text-lg font-semibold text-customBrown w-max flex items-center transform transition-transform duration-300 ease-in-out hover:scale-125" key={index} href={button.link}>{button.name}</a>
         ))}
