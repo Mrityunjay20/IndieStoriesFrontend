@@ -57,6 +57,7 @@ const Card = () => {
     <div className="relative overflow-hidden">
       <div
         className="flex transition-transform duration-500 ease-out"
+        // for sliding the carousel
         style={{
           transform: `translateX(-${curr * (100 / cardsToShow)}%)`,
           width: `${(totalSlides / (cardsExtended.length / cardsToShow)) * 100}%`,
@@ -65,10 +66,10 @@ const Card = () => {
         {cardsExtended.map((card, index) => (
           <div
             key={card.id}
-            className="w-full sm:w-1/4 p-12 px-2 flex justify-center"
+            className="w-full sm:w-1/4 p-12 px-2 flex justify-center "
             style={{ minWidth: `${100 / cardsToShow}%` }}
           >
-            <div className="w-72 transition-transform duration-500 hover:border-4 hover:border-black rounded-lg overflow-hidden border-2 border-gray-300">
+            <div className="w-72 transition-transform duration-500 overflow-hidden border-2 border-pink-300 hover:scale-110 hover:border-4 hover:border-pink-500 z-30">
               <img
                 src={card.image}
                 alt={card.title}
@@ -87,11 +88,11 @@ const Card = () => {
       </div>
 
       {/* Navigation Buttons */}
-      <div className="absolute inset-0 flex items-center justify-between p-4">
-        <button onClick={prev} className="p-2 bg-gray-300 rounded-full">
+      <div className="absolute inset-0 flex items-center justify-between p-4 z-10">
+        <button onClick={prev} className="p-2 bg-gray-300 rounded-full z-10">
           <i className="fa-solid fa-chevron-left text-white opacity-75"></i>
         </button>
-        <button onClick={next} className="p-2 bg-gray-300 rounded-full">
+        <button onClick={next} className="p-2 bg-gray-300 rounded-full z-10">
           <i className="fa-solid fa-chevron-right text-white opacity-75"></i>
         </button>
       </div>
