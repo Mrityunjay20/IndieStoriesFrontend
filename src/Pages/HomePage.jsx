@@ -198,7 +198,7 @@ export default function HomePage() {
             <h2 text-xl text-center py-6>~ Products ~</h2>
             <h1 className="text-4xl font-bold">All of our products are organic & fresh.</h1>
             <div className="w-full p-8 space-x-4 bg-customYellow">
-            <div className="relative w-1/5 h-[366px] p-4 bg-white space-y-4 group">
+            <div className="relative w-1/5 h-[366px] p-4 bg-white space-y-4 group border-2 border-pink-300 transform transition-all delay-10 duration-700 ease-in-out hover:scale-110 hover:border-4 hover:border-pink-500">
                 <div className="absolute h-full w-full opacity-0 transform transition-all delay-10 duration-700 ease-in-out group-hover:opacity-100">
                     <div className="relative left-32 p-4 space-y-4 transform transition-all delay-10 duration-700 ease-in-out group-hover:left-48 ">
                         <a href="#" className="flex items-center justify-center w-8 h-8 rounded-full bg-pink-500 text-black hover:bg-black hover:text-white">

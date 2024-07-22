@@ -23,3 +23,22 @@
 .underlineText-active::after {
   width: 20%;
 }
+
+@media (max-width: 998px) {
+  .header-top {
+      font-size: 14px;
+  }
+
+  .flex-grow {
+      display: none;
+  }
+
+  .md\\:hidden {
+      display: flex;
+  }
+
+  .md\\:flex {
+      display: none;
+  }
+}
+

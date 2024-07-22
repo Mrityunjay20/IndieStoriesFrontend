@@ -1,4 +1,7 @@
 import logo from "../assets/HorizontalLogo.png";
+import { ourStoriInfo } from "../constants";
+import { team } from "../constants";
+import { partners } from "../constants";
 
 export default function OurStoryPage(){
     return(<>
@@ -39,10 +42,47 @@ export default function OurStoryPage(){
 
         {/* WHY INDIE STORE  */}
 
-    <div>
-        <h2 className="text-[58px] font-bold m-6 text-center">Why Indie Stori ?</h2>
+        <div className="bg-pink-500 pb-8">
+            <h2 className="text-[58px] font-bold my-6 pt-8 text-center">Why Indie Stroi?</h2>
+            <div className="bg-customYellow h-[360px] mx-32 text-center rounded-tr-[64px] rounded-bl-[64px] flex justify-around items-center">
+                {ourStoriInfo.map((ourStoriInfo, index) => (
+                    <div key={index} className="text-center mx-8">
+                        <img src={ourStoriInfo.img} className="bg-white h-32 w-32 rounded-full mx-auto"></img>
+                        <h2 className="mt-6 text-3xl">{ourStoriInfo.title}</h2>
+                        <p className="mt-2 text-md">{ourStoriInfo.description}</p>
+                        </div>
+                    ))}
+            </div>
+        </div>
         
-    </div>
+        {/* TEAM  */}
+
+        <div className="bg-[#f8f5ee]">
+            <h2 className=" text-[58px] font-bold pb-4 text-center">Our Team</h2>
+            <div className=" text-center flex flex-wrap justify-center space-x-6 font-medium">
+                {team.map((team, index) => (
+                    <div key={index} className="text-center p-4">
+                        <img src={team.img} className="bg-customYellow h-64 w-64 rounded-full mx-auto"></img>
+                        <h2 className="mt-6 text-2xl">{team.title}</h2>
+                        <p className="mt-2 text-md">{team.description}</p>
+                        </div>
+                    ))}
+            </div>
+        </div>
+
+        {/* OUR PARTNERS  */}
+
+        <div>
+            <h2 className=" text-[58px] font-bold pb-4 text-center">Our Partners</h2>
+            <div className=" text-center flex flex-wrap justify-center space-x-4 font-medium">
+                {partners.map((partners, index) => (
+                    <div key={index} className="text-center py-16 px-24 border">
+                        <img src={partners.img} className="bg-customYellow w-48 h-64 mx-auto"></img>
+                        <h2 className="mt-6 text-2xl">{partners.title}</h2>
+                        </div>
+                    ))}
+            </div>
+        </div>
 
 
     </>)

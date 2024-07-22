@@ -28,5 +28,76 @@ const socialMediaLinks = [
     { name: "Shop", href: "#" },
     { name: "Blog", href: "#" }
   ];
-export { buttons1,buttons2, socialMediaLinks, footerInformation, footerDiscover };
+
+const ourStoriInfo = [
+    {
+        img: 'img1', 
+        title: 'Produce', 
+        description: 'We directly source from the Farmers & help them increase the production.'
+    },
+    {
+        img: 'img1', 
+        title: 'Promote', 
+        description: 'We promote 100% Authentic Native Products produced by nature & nurtured by humans.'
+    },
+    {
+        img: 'img1', 
+        title: 'Preserve', 
+        description: 'We help preserve the Ancient Traditional & Sustainable Techniques.'
+    },
+    {
+        img: 'img1', 
+        title: 'Protect', 
+        description: 'We help protect the Environment ethically & maintain ecological balance.'
+    }
+];
+const team = [
+    {
+        img: 'img1', 
+        title: 'Jasmine Susan Jose', 
+        description: 'Director, Operations'
+    },
+    {
+        img: 'img1', 
+        title: 'Jasmine Susan Jose', 
+        description: 'Director, Operations'
+    },
+    {
+        img: 'img1', 
+        title: 'Jasmine Susan Jose', 
+        description: 'Director, Operations'
+    },
+    {
+        img: 'img1', 
+        title: 'Jasmine Susan Jose', 
+        description: 'Director, Operations'
+    },
+    {
+        img: 'img1', 
+        title: 'Jasmine Susan Jose', 
+        description: 'Director, Operations'
+    },
+    {
+        img: 'img1', 
+        title: 'Jasmine Susan Jose', 
+        description: 'Director, Operations'
+    },
+];
+
+const partners = [
+  {
+      img: 'img1', 
+      title: 'Aikya Pictures', 
+  },
+  {
+      img: 'img1', 
+      title: 'The Dais', 
+  },
+  {
+      img: 'img1', 
+      title: 'Tears of Earth', 
+  },
+];
+
+export { buttons1,buttons2, socialMediaLinks, footerInformation, footerDiscover, ourStoriInfo, team, partners };
   

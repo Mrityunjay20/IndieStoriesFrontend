@@ -53,8 +53,11 @@ const Card = () => {
     );
   };
 
+  // Calculate the actual number of indicator dots needed
+  const slides = Array.from({ length: totalCards });
+
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden h-96">
       <div
         className="flex transition-transform duration-500 ease-out"
         // for sliding the carousel
@@ -65,7 +68,7 @@ const Card = () => {
       >
         {cardsExtended.map((card, index) => (
           <div
-            key={card.id}
+            key={index}
             className="w-full sm:w-1/4 p-12 px-2 flex justify-center "
             style={{ minWidth: `${100 / cardsToShow}%` }}
           >
@@ -87,14 +90,30 @@ const Card = () => {
         ))}
       </div>
 
-      {/* Navigation Buttons */}
-      <div className="absolute inset-0 flex items-center justify-between p-4 z-10">
+       {/* Navigation Buttons */}
+      {/* <div className="absolute inset-0 flex items-center justify-between p-4 z-10">
         <button onClick={prev} className="p-2 bg-gray-300 rounded-full z-10">
           <i className="fa-solid fa-chevron-left text-white opacity-75"></i>
         </button>
         <button onClick={next} className="p-2 bg-gray-300 rounded-full z-10">
           <i className="fa-solid fa-chevron-right text-white opacity-75"></i>
         </button>
+      </div> */}
+
+      {/* Indicator Dots */}
+      <div className="absolute bottom-0 right-0 left-0">
+        <div className="flex items-center justify-center gap-2">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurr(i)}
+              className={`
+                transition-all bg-pink-500 rounded-full
+                ${curr % totalCards === i ? "p-2" : "p-1 bg-opacity-50"}
+              `}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
