@@ -4,7 +4,7 @@ const buttons1 = [
     { name: "Our Impact", link: "/ourimpact" },
   ];
   const buttons2 = [
-    { name: "Shop", link: "#" },
+    { name: "Shop", link: "/shop" },
     { name: "Connect", link: "/connect" },
     { name: "Blog", link: "#" }
   ];
@@ -25,7 +25,7 @@ const socialMediaLinks = [
   
   const footerDiscover = [
     { name: "Our Impact", href: "/ourimpact" },
-    { name: "Shop", href: "#" },
+    { name: "Shop", href: "/shop" },
     { name: "Blog", href: "#" }
   ];
 

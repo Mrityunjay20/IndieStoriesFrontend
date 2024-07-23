@@ -7,6 +7,7 @@ import ConnectPage from './Pages/Connect'
 import HomePage from './Pages/HomePage'
 import OurImpactPage from './Pages/OurImpact'
 import OurStoryPage from './Pages/OurStori'
+import Shop from './Pages/Shop'
 
 function App() {
 
@@ -30,7 +31,11 @@ function App() {
       {
         path:'/connect',
         element:<ConnectPage/>
-      }]
+      },
+      {
+        path:'/shop',
+        element:<Shop/>
+      },]
     }
   ])
 

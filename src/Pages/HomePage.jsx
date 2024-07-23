@@ -2,6 +2,7 @@ import Carousel from "../Components/GlobalComponents/Carousel";
 import Testimonials from "../Components/GlobalComponents/Testimonials";
 import CircleHover from "../Components/GlobalComponents/CircleHover";
 import Card from "../Components/GlobalComponents/Card";
+import CountUp from "../Components/GlobalComponents/CountUp";
 import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
 import img3 from "../assets/img3.jpg";
@@ -73,12 +74,49 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="flex justify-center space-x-16 p-12 bg-customYellow">
-        <div>5000 Customers</div>
-        <div>5000 Customers</div>
-        <div>5000 Customers</div>
-        <div>5000 Customers</div>
+      {/* CountUp 5000+ Customers */}
+
+      <div className="flex justify-center items-center space-x-16 p-12 bg-customYellow">
+
+        <div className="flex justify-center items-center p-2 space-x-6 border-r-4 border-dashed">
+          <img src={img3} className="h-24 w-24" ></img>
+          <div className="flex text-4xl font-medium w-48 flex-wrap">
+            <CountUp end={5000} start={1000} timer= {20} />
+            <sup className="text-pink-500">+</sup>
+            <p className=" text-xl font-medium py-2">Satisfied Clients</p>
+          </div>
+        </div>
+
+        <div className="flex justify-center items-center space-x-6 border-r-4 border-dashed">
+          <img src={img3} className="h-24 w-24" ></img>
+          <div className="flex text-4xl font-medium w-48 flex-wrap">
+            <CountUp end={50} start={0} timer= {65} />
+            <sup className="text-pink-500">+</sup>
+            <p className=" text-xl font-medium py-2">Farmars impacted</p>
+          </div>
+        </div>
+
+        <div className="flex justify-center items-center space-x-6 border-r-4 border-dashed">
+          <img src={img3} className="h-24 w-24" ></img>
+          <div className="flex text-4xl font-medium w-48 flex-wrap">
+            <CountUp end={5000} start={0} timer= {20} />
+            <sup className="text-pink-500">+</sup>
+            <p className=" text-xl font-medium py-2">Customers</p>
+          </div>
+        </div>
+        
+        <div className="flex justify-center items-center space-x-6">
+          <img src={img3} className="h-24 w-24" ></img>
+          <div className="flex text-4xl font-medium w-48 flex-wrap">
+            <CountUp end={5000} start={0} timer= {20} />
+            <sup className="text-pink-500">+</sup>
+            <p className=" text-xl font-medium py-2">Customers</p>
+          </div>
+        </div>
+
       </div>
+
+
 
         {/* Products */}
 

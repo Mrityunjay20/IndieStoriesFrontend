@@ -6,25 +6,25 @@ const Card = () => {
   const cards = [
     {
       id: 1,
-      title: 'Card 1',
+      title: 'Vegetables',
       subtitle: 'Subtitle 1',
       image: 'https://via.placeholder.com/300'
     },
     {
       id: 2,
-      title: 'Card 2',
+      title: 'Fresh Fruits',
       subtitle: 'Subtitle 2',
       image: 'https://via.placeholder.com/300'
     },
     {
       id: 3,
-      title: 'Card 3',
+      title: 'Nuts & dried food',
       subtitle: 'Subtitle 3',
       image: 'https://via.placeholder.com/300'
     },
     {
       id: 4,
-      title: 'Card 4',
+      title: 'Spices',
       subtitle: 'Subtitle 4',
       image: 'https://via.placeholder.com/300'
     }
@@ -57,7 +57,7 @@ const Card = () => {
   const slides = Array.from({ length: totalCards });
 
   return (
-    <div className="relative overflow-hidden h-96">
+    <div className="relative overflow-hidden h-[520px]">
       <div
         className="flex transition-transform duration-500 ease-out"
         // for sliding the carousel
@@ -72,17 +72,23 @@ const Card = () => {
             className="w-full sm:w-1/4 p-12 px-2 flex justify-center "
             style={{ minWidth: `${100 / cardsToShow}%` }}
           >
-            <div className="w-72 transition-transform duration-500 overflow-hidden border-2 border-pink-300 hover:scale-110 hover:border-4 hover:border-pink-500 z-30">
-              <img
+            <div className="w-72 transition-transform duration-500 overflow-hidden border-2 border-pink-300 group hover:scale-110 hover:border-4 hover:border-pink-500 z-30">
+              
+
+              <div className="flex">
+                <p className="text-[120px] font-bold pl-12 transition-all duration-500 group-hover:text-pink-500 ">{card.title[0]}</p>
+                <img
                 src={card.image}
                 alt={card.title}
-                className="w-32 h-32 mt-4 mx-auto object-cover rounded-lg opacity-50"
+                className="w-32 h-32 mt-4 absolute ml-24 z-2 object-cover rounded-lg opacity-50"
               />
+              </div>
+
               <div className="p-4 ">
                 <h1 className="text-2xl font-bold text-black mb-2">{card.title}</h1>
                 <h2 className="text-lg text-black mb-4">{card.subtitle}</h2>
-                <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition-colors">
-                  Learn More
+                <button className="px-4 py-2 text-xs text-white bg-pink-500 rounded-full hover:text-pink-500 hover:bg-black hover:scale-110 duration-500 transition-all">
+                  Shop Now
                 </button>
               </div>
             </div>
