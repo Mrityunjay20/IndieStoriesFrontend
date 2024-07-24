@@ -24,7 +24,7 @@ const CountUp = ({start=0,end,timer=50})=> {
 
         return()=> (isMounted = false);
     },[end,start]);
-    return <div>{state}</div>;
+    return <div>{state}<sup className="text-pink-500">+</sup></div>;
 };
 
 export default CountUp;

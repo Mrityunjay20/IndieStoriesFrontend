@@ -3,65 +3,35 @@ import Testimonials from "../Components/GlobalComponents/Testimonials";
 import CircleHover from "../Components/GlobalComponents/CircleHover";
 import Card from "../Components/GlobalComponents/Card";
 import CountUp from "../Components/GlobalComponents/CountUp";
+import { testimonials,slides,metricsData } from "../constants";
 import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
 import img3 from "../assets/img3.jpg";
 
 export default function HomePage() {
-  const slides = [img1, img1, img1];
-
-
-  const testimonials = [
-    {
-      image: img1,
-      paragraph: "‘’Tempor incididunt ut labore et dolore magna aliquat enim veniam quis nostru exercitation ullamco laboris nis aliquip.’’",
-      heading1: "Sinira Fro",
-      heading2: "Managing Director",
-    },
-    {
-      image: img2,
-      paragraph: "‘’Tempor incididunt ut labore et dolore magna aliquat enim veniam quis nostru exercitation ullamco laboris nis aliquip.’’",
-      heading1: "Sinira Fro",
-      heading2: "Managing Director",
-    },
-    {
-      image: img3,
-      paragraph: "‘’Tempor incididunt ut labore et dolore magna aliquat enim veniam quis nostru exercitation ullamco laboris nis aliquip.’’",
-      heading1: "Sinira Fro",
-      heading2: "Managing Director",
-    },
-    {
-        image: img2,
-        paragraph: "‘’Tempor incididunt ut labore et dolore magna aliquat enim veniam quis nostru exercitation ullamco laboris nis aliquip.’’",
-        heading1: "Sinira Fro",
-        heading2: "Managing Director",
-      },
-  ];
-
-
+  
   return (
     <>
+
+     {/* CAROUSEL  */}
       <div className="relative">
         <div className="max-w-full max-h-[554px]">
-          <Carousel autoSlide={true} slides={slides} size={{ width: '100%', height: '554px' }} imagesToShow={1} />
+          <Carousel autoSlide={true} slides={slides} size={{ width: 'vw', height: '554px' }} imagesToShow={1} />
         </div>
       </div>
 
-      <div className="flex justify-center">
-        <img className="m-12 mt-24 h-[410px] w-[560px]" src={img2} alt="About us" />
-        <div className=" w-1/3 p-6">
-          <h3 className="text-xl">~ About us ~</h3>
-          <h1 className="text-4xl py-4">What is Lorem Ipsum</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-          <p className=" py-6 text-customBrown">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
+      {/* ABOUT US  */}
+
+      <div className="flex flex-col md:flex-row justify-center space-x-6 items-center flex-wrap p-4 md:p-8">
+        <img className="p-4 w-full md:w-96 h-auto max-w-100%" src={img2} alt="About us" />
+        <div className="w-full md:w-1/2 p-4 md:p-6">
+          <h3 className="text-2xl md:text-3xl">~ About us ~</h3>
+          <h1 className="text-4xl font-medium py-4">What is Lorem Ipsum</h1>
+          <p className="text-xl font-semibold py-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          <p className="py-2 text-customBrown text-lg">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
           </p>
-          <div className="flex space-x-16" >
+          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-16">
             <div>
               <h2>Why Organic?</h2>
               <p>We're making room for self care today with plan.</p>
@@ -70,51 +40,34 @@ export default function HomePage() {
               <h2>Why Organic?</h2>
               <p>We're making room for self care today with plan.</p>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
+
 
       {/* CountUp 5000+ Customers */}
 
-      <div className="flex justify-center items-center space-x-16 p-12 bg-customYellow">
-
-        <div className="flex justify-center items-center p-2 space-x-6 border-r-4 border-dashed">
-          <img src={img3} className="h-24 w-24" ></img>
-          <div className="flex text-4xl font-medium w-48 flex-wrap">
-            <CountUp end={5000} start={1000} timer= {20} />
-            <sup className="text-pink-500">+</sup>
-            <p className=" text-xl font-medium py-2">Satisfied Clients</p>
+      <div className="flex flex-wrap justify-around items-center p-6 bg-customYellow">
+        {metricsData.map((metric) => (
+          <div
+            key={metric.id}
+            className="flex flex-col items-center justify-center space-y-4 p-4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg relative" // Added relative positioning
+          >
+            <img
+              src={metric.imageSrc}
+              className="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24"
+              alt="Metric Icon"
+            />
+            <div className="text-center">
+              <div className="text-3xl sm:text-4xl font-medium">
+                <CountUp end={metric.endValue} start={metric.startValue} timer={metric.timer} />
+              </div>
+              <p className="text-lg sm:text-xl font-medium py-2">{metric.description}</p>
+            </div>
           </div>
-        </div>
-
-        <div className="flex justify-center items-center space-x-6 border-r-4 border-dashed">
-          <img src={img3} className="h-24 w-24" ></img>
-          <div className="flex text-4xl font-medium w-48 flex-wrap">
-            <CountUp end={50} start={0} timer= {65} />
-            <sup className="text-pink-500">+</sup>
-            <p className=" text-xl font-medium py-2">Farmars impacted</p>
-          </div>
-        </div>
-
-        <div className="flex justify-center items-center space-x-6 border-r-4 border-dashed">
-          <img src={img3} className="h-24 w-24" ></img>
-          <div className="flex text-4xl font-medium w-48 flex-wrap">
-            <CountUp end={5000} start={0} timer= {20} />
-            <sup className="text-pink-500">+</sup>
-            <p className=" text-xl font-medium py-2">Customers</p>
-          </div>
-        </div>
-        
-        <div className="flex justify-center items-center space-x-6">
-          <img src={img3} className="h-24 w-24" ></img>
-          <div className="flex text-4xl font-medium w-48 flex-wrap">
-            <CountUp end={5000} start={0} timer= {20} />
-            <sup className="text-pink-500">+</sup>
-            <p className=" text-xl font-medium py-2">Customers</p>
-          </div>
-        </div>
-
+        ))}
       </div>
+
 
 
 
