@@ -12,14 +12,16 @@ export default function NavBar() {
 
 	return (
 		<>
-			<p className="header-top font-bold bg-pink-500 text-white py-2 px-3 text-center">
-				Free Shipping on all orders above INR 999!
-			</p>
+			<div>
+				<p className="header-top font-bold bg-pink-500 text-white py-2 text-center w-full text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+					Free Shipping on all orders above INR 999!
+				</p>
+			</div>
 
-			<div className="px-16 py-4 flex flex-grow w-max mx-auto hidden md:flex">
+			<div className="py-4 w-full flex flex-grow w-max mx-auto hidden md:flex md:space-x-1 lg:space-x-12 xl:space-x-20">
 				{buttons1.map((button, index) => (
 					<a
-						className="px-4 mx-2 text-lg font-semibold text-customBrown w-max flex items-center transform transition-transform duration-300 ease-in-out hover:scale-125"
+						className="px-2 mx-2 text-lg font-semibold text-customBrown w-max flex items-center transform transition-transform duration-300 ease-in-out hover:scale-125"
 						key={index}
 						href={button.link}
 					>
@@ -29,7 +31,7 @@ export default function NavBar() {
 				<img className="h-24 mx-24" src={logo} alt="Logo" />
 				{buttons2.map((button, index) => (
 					<a
-						className="px-4 mx-2 text-lg font-semibold text-customBrown w-max flex items-center transform transition-transform duration-300 ease-in-out hover:scale-125"
+						className="px-2 mx-2 text-lg font-semibold text-customBrown w-max flex items-center transform transition-transform duration-300 ease-in-out hover:scale-125"
 						key={index}
 						href={button.link}
 					>

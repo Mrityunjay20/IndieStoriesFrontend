@@ -31,6 +31,54 @@ const socialMediaLinks = [
     { name: "Shop", href: "/shop" },
     { name: "Blog", href: "#" }
   ];
+  const cardsData = [
+    {
+      bgColor: 'pink-500',
+      buttonColor: 'customYellow',
+      title: 'Get 10% off on Vegetables',
+      description: 'Shop our selection of organic fresh vegetables at a discounted price. 10% off on all vegetables.',
+    },
+    {
+      bgColor: 'customYellow',
+      buttonColor: 'pink-500',
+      title: 'Get 10% off on Vegetables',
+      description: 'Shop our selection of organic fresh vegetables at a discounted price. 10% off on all vegetables.',
+    },
+    {
+      bgColor: 'pink-500',
+      buttonColor: 'customYellow',
+      title: 'Get 10% off on Vegetables',
+      description: 'Shop our selection of organic fresh vegetables at a discounted price. 10% off on all vegetables.',
+    },
+  ];
+  
+  const cards = [
+    {
+      id: 1,
+      title: 'Vegetables',
+      subtitle: 'Subtitle 1',
+      image: 'https://via.placeholder.com/300'
+    },
+    {
+      id: 2,
+      title: 'Fresh Fruits',
+      subtitle: 'Subtitle 2',
+      image: 'https://via.placeholder.com/300'
+    },
+    {
+      id: 3,
+      title: 'Nuts & dried food',
+      subtitle: 'Subtitle 3',
+      image: 'https://via.placeholder.com/300'
+    },
+    {
+      id: 4,
+      title: 'Spices',
+      subtitle: 'Subtitle 4',
+      image: 'https://via.placeholder.com/300'
+    }
+  ];
+
 
 const ourStoriInfo = [
     {
@@ -55,6 +103,7 @@ const ourStoriInfo = [
     }
 ];
 const slides = [img1, img1, img1];
+
 
 
   const testimonials = [
@@ -82,6 +131,35 @@ const slides = [img1, img1, img1];
         heading1: "Sinira Fro",
         heading2: "Managing Director",
       },
+  ];
+  const upcomingData = [
+    { image: img1, heading: "Heading One" },
+    { image: img2, heading: "Heading Two" },
+    { image: img3, heading: "Heading Three" },
+    { image: img1, heading: "Heading Four" },
+  ];
+  const blogData = [
+    {
+      image: img1,
+      category: "Organic Food",
+      date: "1/17/2021",
+      title: "What Should Know About Detox Water",
+      link: "#",
+    },
+    {
+      image: img1,
+      category: "Organic Food",
+      date: "1/17/2021",
+      title: "What Should Know About Detox Water",
+      link: "#",
+    },
+    {
+      image: img1,
+      category: "Organic Food",
+      date: "1/17/2021",
+      title: "What Should Know About Detox Water",
+      link: "#",
+    },
   ];
 const team = [
     {
@@ -217,5 +295,5 @@ const products = [
     },
   ];
 
-export { buttons1,buttons2, socialMediaLinks, footerInformation, slides,testimonials, footerDiscover, ourStoriInfo, team, partners, products, metricsData };
+export { buttons1,buttons2, socialMediaLinks, footerInformation,cardsData, cards,blogData, slides,testimonials,upcomingData, footerDiscover, ourStoriInfo, team, partners, products, metricsData };
   

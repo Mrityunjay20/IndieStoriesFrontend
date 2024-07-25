@@ -6,8 +6,25 @@ export default function Testimonials({
   testimonials,
 }) {
   const [curr, setCurr] = useState(0);
+  const [testimonialsToShow, setTestimonialsToShow] = useState(3);
 
-  const testimonialsToShow = 3;
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setTestimonialsToShow(1);
+      } else if (window.innerWidth < 1024) {
+        setTestimonialsToShow(2);
+      } else {
+        setTestimonialsToShow(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const totalTestimonials = testimonials.length;
 
   // Duplicate testimonials for smooth looping
@@ -53,26 +70,25 @@ export default function Testimonials({
         {testimonialsExtended.map((testimonial, index) => (
           <div
             key={index}
-            className="w-full sm:w-1/3 px-2 flex-shrink-0"
+            className="w-full sm:w-1/3 p-1 sm:p-2 md:py-6 flex-shrink-0  shadow-md"
             style={{ minWidth: `${100 / testimonialsToShow}%` }}
           >
-            <div className="relative mx-auto w-28 h-28 border-pink-500 flex items-center justify-center border rounded-full">
+            <div className="relative mx-auto size-28 sm:size-30 border-pink-500 flex items-center justify-center border rounded-full">
               <img
                 src={testimonial.image}
                 alt={`Testimonial ${index}`}
-                className="w-24 h-24 object-cover rounded-full"
+                className="size-24 sm:size-28 object-cover rounded-full"
               />
             </div>
 
-            <p className="text-center text-gray-700 mt-2 p-4 mx-12">{testimonial.paragraph}</p>
+            <p className="text-center text-justify text-gray-700 mt-2 p-4 lg:text-xl">{testimonial.paragraph}</p>
             <div className="text-center">
               <h3 className="text-xl font-semibold">{testimonial.heading1}</h3>
-              <h3 className="text-lg ">{testimonial.heading2}</h3>
+              <h3 className="text-lg">{testimonial.heading2}</h3>
             </div>
           </div>
         ))}
       </div>
-
 
       {/* Navigation Dots */}
       <div className="pt-4 bottom-0 w-full flex justify-center space-x-2">

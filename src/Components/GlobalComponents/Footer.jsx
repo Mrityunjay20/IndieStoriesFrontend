@@ -3,7 +3,7 @@ import { socialMediaLinks, footerInformation,footerDiscover } from "../../consta
 
 export default function Footer(){
     return(<>
-    <div className="footer-top flex justify-evenly text-black bg-white p-10">
+    <div className=" overflow-hidden footer-top flex justify-evenly text-black bg-white p-10">
         <div className="w-64">
             <img className="w-32 my-8" src={logo}></img>
             <p className="text-md font-bold ">We work with a passion of taking challenges and creating new ones in advertising sector.</p>
@@ -16,7 +16,7 @@ export default function Footer(){
             </div>
         </div>
 
-        <div><h2 className={`text-xl font-medium py-5 text-customBrown`}  >Information</h2>
+        <div><h2 className={`overflow-hidden text-xl font-medium py-5 text-customBrown`}  >Information</h2>
             <ul className="space-y-4 text-sm font-bold">
                 {footerInformation.map((link, index) => (
                 <li key={index}>
@@ -26,7 +26,7 @@ export default function Footer(){
             </ul>
         </div>
 
-        <div><h2 className={`text-xl font-medium py-5  text-customBrown`}  >Discover</h2>
+        <div><h2 className={` overflow-hidden text-xl font-medium py-5  text-customBrown`}  >Discover</h2>
             <ul className="space-y-4 text-sm font-bold">
                 {footerDiscover.map((link, index) => (
                 <li key={index}>
@@ -37,7 +37,7 @@ export default function Footer(){
         </div>
         
         <div>
-        <div className="w-64 space-y-4">
+        <div className="overflow-hidden w-64 space-y-4">
             <h2 className="text-xl font-medium pt-5 text-customBrown"> Official Info</h2>
             <p className="text-sm font-bold ">Sector D, Pocket-6, Vasant Kunj, New Delhi, India 110070</p>
             <p className="text-sm font-bold ">+91-9289605017</p>
