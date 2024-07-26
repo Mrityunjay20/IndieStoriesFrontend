@@ -6,7 +6,7 @@ const ResponsiveCard = ({ cards }) => {
       {cards.map((card, index) => (
         <div
           key={index}
-          className="relative flex justify-center h-72 w-64 m-2"
+          className="relative flex justify-center h-72 w-64 m-2 mx-6"
         >
           <img
             src={card.image}

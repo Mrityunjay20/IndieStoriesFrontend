@@ -8,6 +8,7 @@ import HomePage from './Pages/HomePage'
 import OurImpactPage from './Pages/OurImpact'
 import OurStoryPage from './Pages/OurStori'
 import Shop from './Pages/Shop'
+import SingleProduct from './Pages/SingleProduct'
 
 function App() {
 
@@ -34,8 +35,12 @@ function App() {
       },
       {
         path:'/shop',
-        element:<Shop/>
-      },]
+        element:<Shop/>,
+      },
+      {
+        path:'/shop/:id',
+        element:<SingleProduct/>
+      }]
     }
   ])
 
