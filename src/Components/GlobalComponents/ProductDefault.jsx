@@ -51,7 +51,7 @@ import {
               <ShoppingCartDialog/>
               <Button
                 ripple={false}
-                className="w-full md:w-1/2 bg-blue-gray-700 text-white shadow-none hover:bg-black hover:shadow-lg"
+                className="w-full md:w-1/2 bg-pink-500 text-white shadow-none hover:bg-black hover:shadow-lg"
               >
                 Buy Now
               </Button>

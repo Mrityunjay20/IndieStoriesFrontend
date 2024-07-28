@@ -65,7 +65,7 @@ export default function DialogSizes() {
     <>
       
       <div className="flex gap-3">
-        <Button onClick={() => handleOpen("xl")} variant="gradient">
+        <Button className='bg-[#0B78BD]' onClick={() => handleOpen("xl")} >
           Add to Cart
         </Button>
       </div>

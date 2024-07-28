@@ -12,16 +12,17 @@ const CartProduct = ({ product, onQuantityChange, onBuyNow, onDelete }) => {
         <div>
           <h2>{product.name}</h2>
           <p>Rs. {product.price}</p>
-          <p>Quantity:
+          <div className='flex'>
+            <p>Quantity:</p>
             <Button variant="text" color="error" onClick={() => onQuantityChange(product.id, -1)}>-</Button>
             <Button>{product.quantity}</Button>
             <Button variant="text" color="primary" onClick={() => onQuantityChange(product.id, 1)}>+</Button>
-          </p>
+          </div>
         </div>
       </div>
       <div className="space-y-4">
-        <Button variant="text" color="green" onClick={() => onBuyNow(product.id)}>Buy Now</Button>
-        <Button variant="text" color="red" onClick={() => onDelete(product.id)}>Delete</Button>
+        <Button variant="text" className='bg-green-600 text-white w-full text-xs' color="green" onClick={() => onBuyNow(product.id)}>Buy Now</Button>
+        <Button variant="text" className='bg-red-600 text-white w-full' color="red" onClick={() => onDelete(product.id)}>Delete</Button>
       </div>
     </div>
   );
