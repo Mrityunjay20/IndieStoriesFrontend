@@ -33,7 +33,7 @@ export default function BlogCard() {
       <CardHeader
         shadow={false}
         floated={false}
-        className="m-0 md:w-48 lg:w-full shrink-0 "
+        className="m-0 w-full sm:max-w-48 lg:max-w-full shrink-0 "
       >
         <img
           src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"

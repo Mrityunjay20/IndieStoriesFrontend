@@ -7,6 +7,7 @@ import {
     Button,
   } from "@material-tailwind/react";
   import { cards } from "../../constants";
+  import ShoppingCartDialog from "../GlobalComponents/ShoppingCartDialog";
   
   export default function ProductDefault() {
     return (
@@ -47,12 +48,7 @@ import {
               </Typography>
             </CardBody>
             <CardFooter className="pt-0 flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
-              <Button
-                ripple={false}
-                className="w-full md:w-1/2 bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:bg-blue-gray-900/20 hover:shadow-lg"
-              >
-                Add to Cart
-              </Button>
+              <ShoppingCartDialog/>
               <Button
                 ripple={false}
                 className="w-full md:w-1/2 bg-blue-gray-700 text-white shadow-none hover:bg-black hover:shadow-lg"

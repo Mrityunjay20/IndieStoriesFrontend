@@ -16,7 +16,8 @@ module.exports = withMT({
       colors: {
         customYellow: '#fcfbc1',
         customBrown:'#7c2602',
-        customBlue:'#0b78bd'
+        customBlue:'#0b78bd',
+        lightGray: '#ededed'
       },
       animation: {
         'spin-slow-reverse': 'spin-reverse 5s linear infinite',
