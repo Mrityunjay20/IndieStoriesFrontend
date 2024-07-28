@@ -1,25 +1,45 @@
-import React from "react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Typography,
+  Avatar,
+} from "@material-tailwind/react";
 
-const ResponsiveCard = ({ cards }) => {
+function BackgroundBlogCard({ title, subtitle, image, href, avatar }) {
+  const handleClick = () => {
+    window.location.href = href; // Navigate to the link
+  };
+
   return (
-    <div className="flex flex-wrap justify-center p-1">
-      {cards.map((card, index) => (
-        <div
-          key={index}
-          className="relative flex justify-center h-72 w-64 m-2 mx-6"
+    <Card
+      shadow={false}
+      className="relative grid items-end h-72 justify-center overflow-hidden text-center cursor-pointer "
+      onClick={handleClick}
+    >
+      <CardHeader
+        floated={false}
+        shadow={false}
+        color="transparent"
+        className="absolute inset-0 m-0 h-full w-full rounded-none bg-cover bg-center"
+        style={{ backgroundImage: `url(${image})` }}
+      >
+        <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
+      </CardHeader>
+      <CardBody className="relative py-14 px-6 md:px-12">
+        <Typography
+          variant="h4"
+          color="white"
+          className="mb-6 font-medium leading-[1.5]"
         >
-          <img
-            src={card.image}
-            className="h-full w-full object-cover rounded-lg"
-            alt="Card Image"
-          />
-          <div className="absolute bottom-0 w-full h-12 text-white flex items-center justify-center bg-white bg-opacity-60 transition-transform duration-300 rounded-b-lg hover:bg-black">
-            {card.heading}
-          </div>
-        </div>
-      ))}
-    </div>
+          {title}
+        </Typography>
+        <Typography variant="h6" className="mb-4 text-gray-400">
+          {subtitle}
+        </Typography>
+      </CardBody>
+    </Card>
   );
-};
+}
 
-export default ResponsiveCard;
+export default BackgroundBlogCard;

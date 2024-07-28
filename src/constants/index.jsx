@@ -1,6 +1,11 @@
 import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
 import img3 from "../assets/img3.jpg";
+const fontFamily = {
+  sans: ["Roboto", "sans-serif"],
+  serif: ["Roboto Slab", "serif"],
+  body: ["Roboto", "sans-serif"],
+};
 const buttons1 = [
     { name: "Home", link: "/" },
     { name: "Our Stori", link: "/ourstori" },
@@ -55,27 +60,31 @@ const socialMediaLinks = [
   const cards = [
     {
       id: 1,
-      title: 'Vegetables',
+      title: 'Heading 1',
       subtitle: 'Subtitle 1',
-      image: 'https://via.placeholder.com/300'
+      image: img1,
+      href: "#",
     },
     {
       id: 2,
-      title: 'Fresh Fruits',
+      title: 'Heading 2',
       subtitle: 'Subtitle 2',
-      image: 'https://via.placeholder.com/300'
+      image: img3,
+      href: "#",
     },
     {
       id: 3,
-      title: 'Nuts & dried food',
+      title: 'Heading 3',
       subtitle: 'Subtitle 3',
-      image: 'https://via.placeholder.com/300'
+      image: img1,
+      href: "#",
     },
     {
       id: 4,
-      title: 'Spices',
+      title: 'Heading 4',
       subtitle: 'Subtitle 4',
-      image: 'https://via.placeholder.com/300'
+      image: img2,
+      href: "#",
     }
   ];
 
@@ -163,32 +172,32 @@ const slides = [img1, img1, img1];
   ];
 const team = [
     {
-        img: img1, 
+        img: "https://docs.material-tailwind.com/img/team-3.jpg", 
         title: 'Jasmine Susan Jose', 
         description: 'Director, Operations'
     },
     {
-        img: img1, 
+        img: "https://docs.material-tailwind.com/img/team-4.jpg", 
         title: 'Jasmine Susan Jose', 
         description: 'Director, Operations'
     },
     {
-        img: img1, 
+        img: "https://docs.material-tailwind.com/img/team-5.jpg", 
         title: 'Jasmine Susan Jose', 
         description: 'Director, Operations'
     },
     {
-        img: img1, 
+        img: "https://docs.material-tailwind.com/img/team-6.jpg", 
         title: 'Jasmine Susan Jose', 
         description: 'Director, Operations'
     },
     {
-        img: img1, 
+        img: "https://docs.material-tailwind.com/img/team-1.jpg", 
         title: 'Jasmine Susan Jose', 
         description: 'Director, Operations'
     },
     {
-        img: img1, 
+        img: "https://docs.material-tailwind.com/img/team-2.jpg", 
         title: 'Jasmine Susan Jose', 
         description: 'Director, Operations'
     },
@@ -295,5 +304,5 @@ const products = [
     },
   ];
 
-export { buttons1,buttons2, socialMediaLinks, footerInformation,cardsData, cards,blogData, slides,testimonials,upcomingData, footerDiscover, ourStoriInfo, team, partners, products, metricsData };
+export { buttons1,buttons2,fontFamily, socialMediaLinks, footerInformation,cardsData, cards,blogData, slides,testimonials,upcomingData, footerDiscover, ourStoriInfo, team, partners, products, metricsData };
   

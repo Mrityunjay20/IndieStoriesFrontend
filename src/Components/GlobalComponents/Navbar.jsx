@@ -13,25 +13,25 @@ export default function NavBar() {
 	return (
 		<>
 			<div>
-				<p className="header-top font-bold bg-pink-500 text-white py-2 text-center w-full text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+				<p className="header-top font-bold bg-pink-500 text-white py-2 text-center w-full text-sm sm:text-base md:text-lg">
 					Free Shipping on all orders above INR 999!
 				</p>
 			</div>
 
-			<div className="py-4 w-full flex flex-grow w-max mx-auto hidden md:flex md:space-x-1 lg:space-x-12 xl:space-x-20">
+			<div className="py-1  w-full flex flex-grow w-max mx-auto hidden md:flex md:space-x-1 lg:space-x-8 xl:space-x-16">
 				{buttons1.map((button, index) => (
 					<a
-						className="px-2 mx-2 text-lg font-semibold text-customBrown w-max flex items-center transform transition-transform duration-300 ease-in-out hover:scale-125"
+						className="px-2 mx-2 text-lg md:text-lg font-semibold text-customBrown w-max flex items-center transform transition-transform duration-300 ease-in-out hover:scale-125"
 						key={index}
 						href={button.link}
 					>
 						{button.name}
 					</a>
 				))}
-				<img className="h-24 mx-24" src={logo} alt="Logo" />
+				<img className="h-20 mx-24" src={logo} alt="Logo" />
 				{buttons2.map((button, index) => (
 					<a
-						className="px-2 mx-2 text-lg font-semibold text-customBrown w-max flex items-center transform transition-transform duration-300 ease-in-out hover:scale-125"
+						className="px-2 mx-2 text-lg md:text-lg font-semibold text-customBrown w-max flex items-center transform transition-transform duration-300 ease-in-out hover:scale-125"
 						key={index}
 						href={button.link}
 					>
