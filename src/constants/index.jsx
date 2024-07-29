@@ -303,6 +303,7 @@ const products = [
       timer: 20,
     },
   ];
+  
 
-export { buttons1,buttons2,fontFamily, socialMediaLinks, footerInformation,cardsData, cards,blogData, slides,testimonials,upcomingData, footerDiscover, ourStoriInfo, team, partners, products, metricsData };
+export {img1,img2,img3, buttons1,buttons2,fontFamily, socialMediaLinks, footerInformation,cardsData, cards,blogData, slides,testimonials,upcomingData, footerDiscover, ourStoriInfo, team, partners, products, metricsData };
   
