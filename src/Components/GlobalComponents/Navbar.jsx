@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Button, Dialog, DialogHeader, DialogBody, DialogFooter } from "@material-tailwind/react";
 import { buttons1, buttons2,img1, img2,img3 } from "../../constants";
 import logo from "../../assets/HorizontalLogo.png";
@@ -22,6 +23,14 @@ export default function NavBar() {
 	const handleTabChange = (tab) => {
 		setActiveTab(tab);
 	};
+
+	const navigate = useNavigate();
+
+	const handleButtonClick = () => {
+	  navigate('/userdashboard');}
+
+	const handleCart = () => {
+	  navigate('/cart');}
 
 	const [orders, setOrders] = useState([
 		{
@@ -105,8 +114,11 @@ export default function NavBar() {
 				<button>
 					<i className="fa-solid px-2 fa-magnifying-glass text-customBrown"></i>
 				</button>
-				<button className="userProfile" onClick={() => handleDialogOpen("xxl")}>
-					<img className="bg-black rounded-full size-12" alt="User profile" />
+				<button className="userProfile" onClick={handleButtonClick}>
+					<i class="fa-solid fa-user bg-customBrown rounded-full text-white p-2"></i>
+				</button>
+				<button className="cart" onClick={handleCart}>
+					<i class="fa-solid fa-cart-shopping text-customBrown text-xl p-2"></i>
 				</button>
 			</div>
 
@@ -143,7 +155,7 @@ export default function NavBar() {
 				</div>
 			)}
 
-			<Dialog open={size === "xxl"} size="xxl" handler={() => handleDialogOpen(null)}>
+			{/* <Dialog open={size === "xxl"} size="xxl" handler={() => handleDialogOpen(null)}>
 				<DialogHeader>
 					<div className="flex flex-row">
 						<img src="" className="size-12 bg-black rounded-full"></img>
@@ -207,7 +219,7 @@ export default function NavBar() {
 						<span>Close</span>
 					</Button>
 				</DialogFooter>
-			</Dialog>
+			</Dialog> */}
 		</>
 	);
 }

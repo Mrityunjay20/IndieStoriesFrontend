@@ -12,6 +12,8 @@ import SingleProduct from './Pages/SingleProduct'
 import LoginPage from './Pages/LoginPage'
 import SignupPage from './Pages/SignupPage'
 import UserDashboard from './Pages/UserDashboard'
+import CheckoutPage from './Pages/CheckoutPage'
+import ShoppingCartDialog from './Components/GlobalComponents/ShoppingCartDialog'
 
 function App() {
 
@@ -55,6 +57,14 @@ function App() {
       {
         path:'/userdashboard',
         element:<UserDashboard/>
+      },
+      {
+        path:"/checkout",
+        element:<CheckoutPage />
+      },
+      {
+        path:"/cart",
+        element:<ShoppingCartDialog/>
       }]
     }
   ])
