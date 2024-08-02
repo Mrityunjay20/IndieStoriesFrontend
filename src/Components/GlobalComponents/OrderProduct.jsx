@@ -1,12 +1,11 @@
 import React from 'react';
-import { Button } from "@material-tailwind/react";
 
 const OrderProduct = ({ order }) => {
   return (
     <div className="flex justify-between p-8 bg-lightGray rounded-lg">
       <div className="flex space-x-8">
         <img
-          className="w-1/6"
+          className="w-1/6 rounded-lg"
           src={order.image}
           alt={order.name}
         />

@@ -4,7 +4,7 @@ import { buttons1, buttons2,img1, img2,img3 } from "../../constants";
 import logo from "../../assets/HorizontalLogo.png";
 import "../../App.css";
 import WishlistItem from "../GlobalComponents/WishlistItem";
-import OrderProduct from "../GlobalComponents/OrderProduct"; // Ensure the correct path
+import OrderProduct from "../GlobalComponents/OrderProduct"; 
 
 export default function NavBar() {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

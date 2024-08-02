@@ -33,34 +33,34 @@ export default function HomePage() {
 
       {/* ABOUT US  */}
 
-      <div className=" flex flex-col md:flex-row items-center flex-wrap md:p-2 lg:space-x-0 my-8">
-        
-        <div className="p-2 w-full lg:w-1/2 lg:p-0 ">
-        <img className="w-full rounded-xl
-        object-cover h-96 mx-auto md:max-w-sm lg:p- lg:max-w-lg " src={img2} alt="About us" />
-      </div>
+      <div className="flex flex-col md:flex-row items-center flex-wrap md:p-2 lg:space-x-0 my-8">
+  
+        <div className="p-2 w-full lg:w-1/2 lg:p-0 animate-slideInLeft">
+          <img className="w-full rounded-xl object-cover h-96 mx-auto md:max-w-sm lg:max-w-lg" src={img2} alt="About us" />
+        </div>
 
-        <div className="p-4 lg:p-10 mx-auto text-justify lg:w-1/2 py-4 ">
-          <h3 className="font-semibold text-xl py-2 md:text-3xl md:py-3 ">About us</h3>
-          <h1 className=" text-3xl py-2 md:text-4xl font-bold md:py-3 lg:text-4xl">What is Lorem Ipsum</h1>
+        <div className="p-4 lg:p-10 mx-auto text-justify lg:w-1/2 py-4 animate-slideInRight">
+          <h3 className="font-semibold text-xl py-2 md:text-3xl md:py-3">About us</h3>
+          <h1 className="text-3xl py-2 md:text-4xl font-bold md:py-3 lg:text-4xl">What is Lorem Ipsum</h1>
           <p className="text-lg py-1 font-semibold md:text-2xl md:py-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
           <p className="text-customBrown py-2 text-md md:text-lg">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
           </p>
 
           <div className="text-base py-2 space-y-4 md:space-x-6 lg:space-y-0 flex flex-col md:flex-row md:text-lg lg:py-4">
-            <div >
+            <div>
               <h2 className="font-semibold">Why Organic?</h2>
               <p>We're making room for self care today with plan.</p>
             </div>
-            <div >
+            <div>
               <h2 className="font-semibold">Why Organic?</h2>
               <p>We're making room for self care today with plan.</p>
             </div>
           </div>
-          
         </div>
+
       </div>
+
 
 
       {/* CountUp 5000+ Customers */}

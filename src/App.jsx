@@ -9,6 +9,9 @@ import OurImpactPage from './Pages/OurImpact'
 import OurStoryPage from './Pages/OurStori'
 import Shop from './Pages/Shop'
 import SingleProduct from './Pages/SingleProduct'
+import LoginPage from './Pages/LoginPage'
+import SignupPage from './Pages/SignupPage'
+import UserDashboard from './Pages/UserDashboard'
 
 function App() {
 
@@ -40,6 +43,18 @@ function App() {
       {
         path:'/shop/:id',
         element:<SingleProduct/>
+      },
+      {
+        path:'/login',
+        element:<LoginPage/>
+      },
+      {
+        path:'/signup',
+        element:<SignupPage/>
+      },
+      {
+        path:'/userdashboard',
+        element:<UserDashboard/>
       }]
     }
   ])
