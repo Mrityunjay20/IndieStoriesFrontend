@@ -1,4 +1,3 @@
-// src/components/Dashboard.jsx
 import React, { useState } from 'react';
 import { img1, img2,img3 } from "../constants";
 import Sidebar from '../Components/GlobalComponents/Sidebar';
@@ -70,7 +69,7 @@ export default function UserDashboard() {
                 );
             case 'orders':
                 return (
-                <div>
+                <div className='w-full'>
                     <div className=" px-4 space-y-4 overflow-y-auto">
                         {orders.map(order => (
                             <OrderProduct
@@ -87,14 +86,14 @@ export default function UserDashboard() {
                 </div>
                 );
             case 'logout':
-                return <div>Logout Section</div>;
+                return <div className='w-full'>Logout Section</div>;
             default:
                 return null;
         }
     };
 
     return (
-        <div className="flex ">
+        <div className="flex w-full ">
             <Sidebar onSelectSection={setSelectedSection} />
             {renderSection()}
             
