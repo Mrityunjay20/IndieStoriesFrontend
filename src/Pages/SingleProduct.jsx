@@ -102,14 +102,16 @@ export default function SingleProduct() {
             Category: <span className="text-black">Beverage</span>
           </h2>
           <h1 className="text-3xl font-semibold my-4">Rs. 299.00</h1>
-          <div>
+
+          {/* <div>
             <h1 className="text-xl my-4">Variants:</h1>
             <ButtonGroup className="border-pink-300" variant="outlined">
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
             </ButtonGroup>
-          </div>
+          </div> */}
+
           <div className="my-6 text-xl">
             <p>Quantity:</p>
             <div className="flex w-max gap-4 my-4">

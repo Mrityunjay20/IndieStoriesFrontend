@@ -170,7 +170,7 @@ function NavList() {
   const handleOpen = (value) => setSize(value);
   return (
 	<>
-    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 lg:w-8/10 items-center">
+    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 lg:w-8/10 items-start">
       {/* <Typography
         as="a"
         href="/"
@@ -225,7 +225,7 @@ function NavList() {
       </Typography>
       <Button
         ripple={false}
-        className="font-semibold bg-transparent text-customBrown mx-4"
+        className="font-semibold bg-transparent shadow-none text-customBrown px-4 lg:ml-4"
 		onClick={() => handleOpen("xl")}
       >
         {React.createElement(ShoppingCartIcon, {
@@ -239,7 +239,7 @@ function NavList() {
         href="/search"
         variant="medium"
         color="blue-gray"
-        className="font-semibold text-customBrown ml-4"
+        className="font-semibold text-customBrown py-2 ml-4"
       >
         {/* <ListItem className="flex items-center gap-2 py-2 pr-4">
           Account
@@ -254,7 +254,7 @@ function NavList() {
         href="/userdashboard"
         variant="medium"
         color="blue-gray"
-        className="font-semibold text-customBrown ml-4"
+        className="font-semibold text-customBrown py-2 ml-4"
       >
         {/* <ListItem className="flex items-center gap-2 py-2 pr-4">
           Account

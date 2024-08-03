@@ -184,6 +184,33 @@ const slides = [img1, img1, img1];
         heading2: "Managing Director",
       },
   ];
+
+  const brandpartners = [
+    {
+      image: img1,
+      paragraph: "‘’Tempor incididunt ut labore et dolore magna aliquat enim veniam quis nostru exercitation ullamco laboris nis aliquip.’’",
+      heading1: "one",
+      heading2: "Director",
+    },
+    {
+      image: img2,
+      paragraph: "‘’Tempor incididunt ut labore et dolore magna aliquat enim veniam quis nostru exercitation ullamco laboris nis aliquip.’’",
+      heading1: "two",
+      heading2: "Managing Director",
+    },
+    {
+      image: img3,
+      paragraph: "‘’Tempor incididunt ut labore et dolore magna aliquat enim veniam quis nostru exercitation ullamco laboris nis aliquip.’’",
+      heading1: "three",
+      heading2: "Managing Director",
+    },
+    {
+        image: img2,
+        paragraph: "‘’Tempor incididunt ut labore et dolore magna aliquat enim veniam quis nostru exercitation ullamco laboris nis aliquip.’’",
+        heading1: "four",
+        heading2: "Managing Director",
+      },
+  ];
   const upcomingData = [
     { image: img1, heading: "Heading One" },
     { image: img2, heading: "Heading Two" },
@@ -307,14 +334,6 @@ const products = [
       timer: 65,
     },
     {
-      id: 3,
-      imageSrc: img3,
-      endValue: 5000,
-      startValue: 0,
-      description: 'Customers',
-      timer: 20,
-    },
-    {
       id: 4,
       imageSrc: img1,
       endValue: 5000,
@@ -325,5 +344,5 @@ const products = [
   ];
   
 
-export {img1,img2,img3, buttons1,buttons2,fontFamily, socialMediaLinks, footerInformation,cardsData, cards,blogData, slides,testimonials,upcomingData, footerDiscover, ourStoriInfo, team, partners, products, metricsData };
+export {img1,img2,img3, buttons1,buttons2,fontFamily, socialMediaLinks, footerInformation,cardsData, cards,blogData, slides,testimonials,brandpartners,upcomingData, footerDiscover, ourStoriInfo, team, partners, products, metricsData };
   
