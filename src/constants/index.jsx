@@ -10,9 +10,9 @@ const buttons1 = [
     { name: "Home", link: "/" },
     { name: "Our Stori", link: "/ourstori" },
     { name: "Our Impact", link: "/ourimpact" },
+    { name: "Shop", link: "/shop" },
   ];
   const buttons2 = [
-    { name: "Shop", link: "/shop" },
     { name: "Connect", link: "/connect" },
     { name: "Blog", link: "#" }
   ];

@@ -1,225 +1,328 @@
-import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import { Button, Dialog, DialogHeader, DialogBody, DialogFooter } from "@material-tailwind/react";
-import { buttons1, buttons2,img1, img2,img3 } from "../../constants";
-import logo from "../../assets/HorizontalLogo.png";
-import "../../App.css";
-import WishlistItem from "../GlobalComponents/WishlistItem";
-import OrderProduct from "../GlobalComponents/OrderProduct"; 
+import React, { useEffect, useState } from "react";
+import {
+  Navbar,
+  Collapse,
+  Typography,
+  IconButton,
+  List,
+  ListItem,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+} from "@material-tailwind/react";
+import {
+  ChevronDownIcon,
+  Bars3Icon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import {
+  Bars4Icon,
+  GlobeAmericasIcon,
+  NewspaperIcon,
+  PhoneIcon,
+  RectangleGroupIcon,
+  SquaresPlusIcon,
+  SunIcon,
+  TagIcon,
+  UserGroupIcon,
+  MagnifyingGlassIcon,
+  ShoppingCartIcon,
+  UserIcon
 
-export default function NavBar() {
-	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const [size, setSize] = useState(null);
-	const [activeTab, setActiveTab] = useState(null);
+} from "@heroicons/react/24/solid";
 
-	const toggleMobileMenu = () => {
-		setIsMobileMenuOpen(!isMobileMenuOpen);
-	};
+import IndieLogo from "../../assets/HorizontalLogo.png";
 
-	const handleDialogOpen = (value) => {
-		setSize(value);
-	};
+const navListMenuItems = [
+  {
+    title: "Products 1",
+    description: "Find the perfect solution for your needs.",
+    icon: SquaresPlusIcon,
+  },
+  {
+    title: "Products 2",
+    description: "Meet and learn about our dedication",
+    icon: UserGroupIcon,
+  },
+  {
+    title: "Products 3",
+    description: "Find the perfect solution for your needs.",
+    icon: Bars4Icon,
+  },
+  {
+    title: "Products 4",
+    description: "Learn how we can help you achieve your goals.",
+    icon: SunIcon,
+  },
+  {
+    title: "Products 5",
+    description: "Reach out to us for assistance or inquiries",
+    icon: GlobeAmericasIcon,
+  },
+  {
+    title: "Products 6",
+    description: "Find the perfect solution for your needs.",
+    icon: PhoneIcon,
+  },
+  {
+    title: "Products 7",
+    description: "Read insightful articles, tips, and expert opinions.",
+    icon: NewspaperIcon,
+  },
+  {
+    title: "Products 8",
+    description: "Find the perfect solution for your needs.",
+    icon: RectangleGroupIcon,
+  },
+  {
+    title: "Products 9",
+    description: "Explore limited-time deals and bundles",
+    icon: TagIcon,
+  },
+];
 
-	const handleTabChange = (tab) => {
-		setActiveTab(tab);
-	};
+function NavListMenu() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const renderItems = navListMenuItems.map(
+    ({ icon, title, description }, key) => (
+      <a href="#" key={key}>
+        <MenuItem className="flex items-center gap-3 rounded-lg">
+          <div className="flex items-center justify-center rounded-lg !bg-blue-gray-50 p-2 ">
+            {" "}
+            {React.createElement(icon, {
+              strokeWidth: 2,
+              className: "h-6 text-gray-900 w-6",
+            })}
+          </div>
+          <div>
+            <Typography
+              variant="h6"
+              color="blue-gray"
+              className="flex items-center text-sm font-bold"
+            >
+              {title}
+            </Typography>
+            <Typography
+              variant="paragraph"
+              className="text-xs !font-medium text-blue-gray-500"
+            >
+              {description}
+            </Typography>
+          </div>
+        </MenuItem>
+      </a>
+    )
+  );
 
-	const navigate = useNavigate();
+  return (
+    <>
+      <Menu
+        open={isMenuOpen}
+        handler={setIsMenuOpen}
+        offset={{ mainAxis: 20 }}
+        placement="bottom"
+        allowHover={true}
+      >
+        <MenuHandler>
+          <Typography as="div" variant="medium" className="font-semibold">
+            <ListItem
+              className="flex items-center gap-2 py-2 pr-4 font-semibold text-customBrown"
+              selected={isMenuOpen || isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen((cur) => !cur)}
+            >
+              <a href="/shop">Shop</a>
+              <ChevronDownIcon
+                strokeWidth={2.5}
+                className={`hidden h-3 w-3 transition-transform lg:block ${
+                  isMenuOpen ? "rotate-180" : ""
+                }`}
+              />
+              <ChevronDownIcon
+                strokeWidth={2.5}
+                className={`block h-3 w-3 transition-transform lg:hidden ${
+                  isMobileMenuOpen ? "rotate-180" : ""
+                }`}
+              />
+            </ListItem>
+          </Typography>
+        </MenuHandler>
+        <MenuList className="hidden  rounded-xl w-2/3 mx-4 lg:block">
+          <ul className="grid grid-cols-3 gap-y-2 outline-none outline-0">
+            {renderItems}
+          </ul>
+        </MenuList>
+      </Menu>
+      <div className="block lg:hidden">
+        <Collapse open={isMobileMenuOpen}>{renderItems}</Collapse>
+      </div>
+    </>
+  );
+}
 
-	const handleButtonClick = () => {
-	  navigate('/userdashboard');}
+function NavList() {
+  return (
+    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 lg:w-8/10 items-center">
+      <Typography
+        as="a"
+        href="/"
+        variant="medium"
+        color="blue-gray"
+        className="font-semibold text-customBrown"
+      >
+        <ListItem className="flex items-center gap-2 py-2 pr-4">Home</ListItem>
+      </Typography>
+      <Typography
+        as="a"
+        href="/ourstori"
+        variant="medium"
+        color="blue-gray"
+        className="font-semibold text-customBrown"
+      >
+        <ListItem className="flex items-center gap-2 py-2 pr-4">
+          Our Stori
+        </ListItem>
+      </Typography>
+      <Typography
+        as="a"
+        href="/ourimpact"
+        variant="medium"
+        color="blue-gray"
+        className="font-semibold text-customBrown"
+      >
+        <ListItem className="flex items-center gap-2 py-2 pr-4">
+          Our Impact
+        </ListItem>
+      </Typography>
+      <NavListMenu />
+      <Typography
+        as="a"
+        href="/connect"
+        variant="medium"
+        color="blue-gray"
+        className="font-semibold text-customBrown"
+      >
+        <ListItem className="flex items-center gap-2 py-2 pr-4">
+          Connect
+        </ListItem>
+      </Typography>
+      <Typography
+        as="a"
+        href="#"
+        variant="medium"
+        color="blue-gray"
+        className="font-semibold text-customBrown"
+      >
+        <ListItem className="flex items-center gap-2 py-2 pr-4">Blog</ListItem>
+      </Typography>
+      <Typography
+        as="a"
+        href="#"
+        variant="medium"
+        color="blue-gray"
+        className="font-semibold text-customBrown mx-4"
+      >
+        {React.createElement(MagnifyingGlassIcon, {
+              strokeWidth: 2,
+              className: "h-6 w-6",
+        })}
+      </Typography>
+      <Typography
+        as="a"
+        href="#"
+        variant="medium"
+        color="blue-gray"
+        className="font-semibold text-customBrown mx-4"
+      >
+        {React.createElement(ShoppingCartIcon, {
+              strokeWidth: 2,
+              className: "h-6 w-6",
+        })}
+      </Typography>
+      <Typography
+        as="a"
+        href="#"
+        variant="medium"
+        color="blue-gray"
+        className="font-semibold text-customBrown ml-4"
+      >
+        {/* <ListItem className="flex items-center gap-2 py-2 pr-4">
+          Account
+        </ListItem> */}
+		{React.createElement(UserIcon, {
+              strokeWidth: 2,
+              className: "h-6 w-6",
+        })}
+      </Typography>
+    </List>
+  );
+}
 
-	const handleCart = () => {
-	  navigate('/cart');}
+export function MegaMenuWithHover() {
 
-	const [orders, setOrders] = useState([
-		{
-			id: 1,
-			name: 'Product one',
-			price: 100,
-			quantity: 2,
-			image: img2,
-			status: 'Delivered'
-		},
-		{
-			id: 2,
-			name: 'Product two',
-			price: 200,
-			quantity: 1,
-			image: img1,
-			status: 'Pending'
-		},
-		{
-			id: 3,
-			name: 'Product three',
-			price: 10,
-			quantity: 1,
-			image: img3,
-			status: 'Delivered'
-		},
-		{
-			id: 4,
-			name: 'Product four',
-			price: 120,
-			quantity: 1,
-			image: 'https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-			status: 'Cancelled'
-		},
-	]);
 
-	const [wishlist, setWishlist] = useState([
-		{
-		  id: 1,
-		  name: 'Wishlist Product One',
-		  price: 150,
-		  image: img1,
-		},
-		{
-		  id: 2,
-		  name: 'Wishlist Product Two',
-		  price: 250,
-		  image: img2
-		},
-	  ]);
-	  
+	const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-	return (
-		<>
-			<div>
-				<p className="header-top font-bold bg-pink-500 text-white py-2 text-center w-full text-sm sm:text-base md:text-lg">
-					Free Shipping on all orders above INR 999!
-				</p>
-			</div>
+  const handleScroll = () => {
+    if (window.scrollY > lastScrollY) {
+      setVisible(false); // Scrolling down
+    } else {
+      setVisible(true); // Scrolling up
+    }
+    setLastScrollY(window.scrollY);
+  };
 
-			<div className="py-1 w-full flex flex-grow w-max mx-auto hidden md:flex md:space-x-1 lg:space-x-8 xl:space-x-16">
-				{buttons1.map((button, index) => (
-					<a
-						className="px-2 mx-2 text-lg md:text-lg font-semibold text-customBrown w-max flex items-center transform transition-transform duration-300 ease-in-out hover:scale-125"
-						key={index}
-						href={button.link}
-					>
-						{button.name}
-					</a>
-				))}
-				<img className="h-20 mx-24" src={logo} alt="Logo" />
-				{buttons2.map((button, index) => (
-					<a
-						className="px-2 mx-2 text-lg md:text-lg font-semibold text-customBrown w-max flex items-center transform transition-transform duration-300 ease-in-out hover:scale-125"
-						key={index}
-						href={button.link}
-					>
-						{button.name}
-					</a>
-				))}
-				<button>
-					<i className="fa-solid px-2 fa-magnifying-glass text-customBrown"></i>
-				</button>
-				<button className="userProfile" onClick={handleButtonClick}>
-					<i class="fa-solid fa-user bg-customBrown rounded-full text-white p-2"></i>
-				</button>
-				<button className="cart" onClick={handleCart}>
-					<i class="fa-solid fa-cart-shopping text-customBrown text-xl p-2"></i>
-				</button>
-			</div>
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
 
-			<div className="md:hidden flex justify-between items-center px-4 py-2 bg-white shadow-md">
-				<img className="h-24" src={logo} alt="Logo" />
-				<button onClick={toggleMobileMenu} className="text-customBrown">
-					<i className="fa-solid fa-bars text-2xl"></i>
-				</button>
-			</div>
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
-			{isMobileMenuOpen && (
-				<div className="absolute z-10 top-0 h-full md:hidden flex flex-col items-center w-[250px] bg-white shadow-lg px-4 py-6">
-					{buttons1.map((button, index) => (
-						<a
-							className="px-4 py-2 text-lg font-semibold text-customBrown w-full text-center"
-							key={index}
-							href={button.link}
-						>
-							{button.name}
-						</a>
-					))}
-					{buttons2.map((button, index) => (
-						<a
-							className="px-4 py-2 text-lg font-semibold text-customBrown w-full text-center"
-							key={index}
-							href={button.link}
-						>
-							{button.name}
-						</a>
-					))}
-					<button onClick={toggleMobileMenu}>
-						<i className="fa-solid fa-xmark absolute top-10 right-8 text-customBrown"></i>
-					</button>
-				</div>
-			)}
+  const [openNav, setOpenNav] = useState(false);
 
-			{/* <Dialog open={size === "xxl"} size="xxl" handler={() => handleDialogOpen(null)}>
-				<DialogHeader>
-					<div className="flex flex-row">
-						<img src="" className="size-12 bg-black rounded-full"></img>
-						<p className="px-12">Username</p>
-					</div>
-				</DialogHeader>
-				<DialogBody>
-					<div>
-						<div className="flex space-x-4 mb-4">
-							<button onClick={() => handleTabChange("profile")}>My Profile</button>
-							<button onClick={() => handleTabChange("orders")}>My Orders</button>
-							<button onClick={() => handleTabChange("wishlist")}>My Wishlist</button>
-						</div>
-						<div className="profile" style={{ display: activeTab === "profile" ? "block" : "none" }}>
-							<div>
-								<div className="flex flex-row">
-									<img src="" className="size-12 bg-black rounded-full"></img>
-									<p className="px-12">Username</p>
-								</div>
-								<p>Email:</p>
-								<p>Phone number:</p>
-								<p>Address:</p>
-							</div>
-						</div>
-						<div className="orders" style={{ display: activeTab === "orders" ? "block" : "none" }}>
-							<div>
-								<div className="max-h-[74vh] px-4 space-y-4 overflow-y-auto">
-									{orders.map(order => (
-										<OrderProduct
-											key={order.id}
-											order={order}
-										/>
-									))}
-								</div>
-							</div>
-						</div>
-						<div className="wishlist" style={{ display: activeTab === "wishlist" ? "block" : "none" }}>
-							<div className="max-h-[74vh] px-4 space-y-4 overflow-y-auto">
-								{wishlist.length > 0 ? (
-								wishlist.map(item => (
-									<WishlistItem
-									key={item.id}
-									item={item}
-									/>
-								))
-								) : (
-								<p>No items in your wishlist.</p>
-								)}
-							</div>
-						</div>
+  useEffect(() => {
+    window.addEventListener(
+      "resize",
+      () => window.innerWidth >= 960 && setOpenNav(false)
+    );
+  }, []);
 
-					</div>
-				</DialogBody>
-				<DialogFooter>
-				
-					<Button
-						variant="gradient"
-						color="green"
-						onClick={() => handleDialogOpen(null)}
-					>
-						<span>Close</span>
-					</Button>
-				</DialogFooter>
-			</Dialog> */}
-		</>
-	);
+  return (
+    <Navbar className={`mx-auto w-full py-1 my-4 z-50 sticky top-0 transition-transform duration-300 ${
+        visible ? "transform translate-y-0" : "transform -translate-y-full"
+      }`}>
+      <div className="flex  w-full items-center justify-between text-customBrown">
+        <Typography
+          as="a"
+          href="/"
+          variant="h6"
+          className="mr-4 cursor-pointer py-1.5 lg:ml-2"
+        >
+          <img src={IndieLogo} className="h-20 w-36" />
+        </Typography>
+        <div className="hidden lg:block">
+          <NavList />
+        </div>
+        <IconButton
+          variant="text"
+          color="blue-gray"
+          className="lg:hidden"
+          onClick={() => setOpenNav(!openNav)}
+        >
+          {openNav ? (
+            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+          ) : (
+            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+          )}
+        </IconButton>
+      </div>
+      <Collapse open={openNav}>
+        <NavList />
+      </Collapse>
+    </Navbar>
+  );
 }
