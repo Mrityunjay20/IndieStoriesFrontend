@@ -10,6 +10,7 @@ import {
   MenuHandler,
   MenuList,
   MenuItem,
+  Button,
 } from "@material-tailwind/react";
 import {
   ChevronDownIcon,
@@ -33,6 +34,7 @@ import {
 } from "@heroicons/react/24/solid";
 
 import IndieLogo from "../../assets/HorizontalLogo.png";
+import ShoppingCartDialog from "./ShoppingCartDialog";
 
 const navListMenuItems = [
   {
@@ -162,9 +164,14 @@ function NavListMenu() {
 }
 
 function NavList() {
+
+	const [size, setSize] = useState(null);
+
+  const handleOpen = (value) => setSize(value);
   return (
+	<>
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 lg:w-8/10 items-center">
-      <Typography
+      {/* <Typography
         as="a"
         href="/"
         variant="medium"
@@ -172,7 +179,7 @@ function NavList() {
         className="font-semibold text-customBrown"
       >
         <ListItem className="flex items-center gap-2 py-2 pr-4">Home</ListItem>
-      </Typography>
+      </Typography> */}
       <Typography
         as="a"
         href="/ourstori"
@@ -216,33 +223,35 @@ function NavList() {
       >
         <ListItem className="flex items-center gap-2 py-2 pr-4">Blog</ListItem>
       </Typography>
-      <Typography
-        as="a"
-        href="#"
-        variant="medium"
-        color="blue-gray"
-        className="font-semibold text-customBrown mx-4"
-      >
-        {React.createElement(MagnifyingGlassIcon, {
-              strokeWidth: 2,
-              className: "h-6 w-6",
-        })}
-      </Typography>
-      <Typography
-        as="a"
-        href="#"
-        variant="medium"
-        color="blue-gray"
-        className="font-semibold text-customBrown mx-4"
+      <Button
+        ripple={false}
+        className="font-semibold bg-transparent text-customBrown mx-4"
+		onClick={() => handleOpen("xl")}
       >
         {React.createElement(ShoppingCartIcon, {
               strokeWidth: 2,
               className: "h-6 w-6",
         })}
+      </Button>
+
+      <Typography
+        as="a"
+        href="/search"
+        variant="medium"
+        color="blue-gray"
+        className="font-semibold text-customBrown ml-4"
+      >
+        {/* <ListItem className="flex items-center gap-2 py-2 pr-4">
+          Account
+        </ListItem> */}
+		{React.createElement(MagnifyingGlassIcon, {
+              strokeWidth: 2,
+              className: "h-6 w-6",
+        })}
       </Typography>
       <Typography
         as="a"
-        href="#"
+        href="/userdashboard"
         variant="medium"
         color="blue-gray"
         className="font-semibold text-customBrown ml-4"
@@ -255,12 +264,16 @@ function NavList() {
               className: "h-6 w-6",
         })}
       </Typography>
+      
     </List>
+	<ShoppingCartDialog size={size} handleOpen={handleOpen} />
+	</>
   );
 }
 
 export function MegaMenuWithHover() {
 
+	
 
 	const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -291,7 +304,8 @@ export function MegaMenuWithHover() {
     );
   }, []);
 
-  return (
+  return (<>
+  
     <Navbar className={`mx-auto w-full py-1 my-4 z-50 sticky top-0 transition-transform duration-300 ${
         visible ? "transform translate-y-0" : "transform -translate-y-full"
       }`}>
@@ -324,5 +338,7 @@ export function MegaMenuWithHover() {
         <NavList />
       </Collapse>
     </Navbar>
+	
+	</>
   );
 }

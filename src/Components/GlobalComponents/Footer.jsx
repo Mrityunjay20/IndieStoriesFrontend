@@ -6,7 +6,7 @@ export default function Footer(){
     <div className=" overflow-hidden footer-top flex space-x-4 md:justify-evenly text-black bg-white p-8 pb-12 ">
         <div className="w-1/2 md:w-48  ">
             <img className="w-32 my-8" src={logo}></img>
-            <p className="hidden md:flex text-md font-bold max-w-48 ">We work with a passion of taking challenges and creating new ones in advertising sector.</p>
+            <p className="hidden md:flex text-md font-bold max-w-48 text-justify ml-4 ">We work with a passion of taking challenges and creating new ones in advertising sector.</p>
             
 
             <div className="socialLogo grid grid-cols-2 sm:grid-cols-4  md:flex md:flex-row justify-start gap-4 py-4">

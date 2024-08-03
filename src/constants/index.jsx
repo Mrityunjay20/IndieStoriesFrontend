@@ -85,7 +85,50 @@ const socialMediaLinks = [
       subtitle: 'Subtitle 4',
       image: img2,
       href: "#",
-    }
+    },
+    {
+      id: 5,
+      title: 'Heading 5',
+      subtitle: 'Subtitle 1',
+      image: img1,
+      href: "#",
+    },
+    {
+      id: 6,
+      title: 'Heading 6',
+      subtitle: 'Subtitle 2',
+      image: img3,
+      href: "#",
+    },
+    {
+      id: 7,
+      title: 'Heading 7',
+      subtitle: 'Subtitle 3',
+      image: img1,
+      href: "#",
+    },
+    {
+      id: 8,
+      title: 'Heading 8',
+      subtitle: 'Subtitle 4',
+      image: img2,
+      href: "#",
+    },
+    {
+      id: 7,
+      title: 'Heading 7',
+      subtitle: 'Subtitle 3',
+      image: img1,
+      href: "#",
+    },
+    {
+      id: 8,
+      title: 'Heading 8',
+      subtitle: 'Subtitle 4',
+      image: img2,
+      href: "#",
+    },
+    
   ];
 
 
@@ -226,7 +269,7 @@ const products = [
       image: img1
     },
     {
-      name: 'Orange Juice',
+      name: 'Apple Juice',
       price: '$10.00-$20.00',
       rating: 2,
       image: img3
@@ -243,30 +286,7 @@ const products = [
       rating: 5,
       image: img1
     },
-    {
-      name: 'Orange Juice',
-      price: '$10.00-$20.00',
-      rating: 5,
-      image: img3
-    },
-    {
-      name: 'Orange Juice',
-      price: '$10.00-$20.00',
-      rating: 5,
-      image: img2
-    },
-    {
-      name: 'Orange Juice',
-      price: '$10.00-$20.00',
-      rating: 5,
-      image: img3
-    },
-    {
-      name: 'Orange Juice',
-      price: '$10.00-$20.00',
-      rating: 5,
-      image: img1
-    },
+    
     // Add more products as needed
   ];
  const metricsData = [

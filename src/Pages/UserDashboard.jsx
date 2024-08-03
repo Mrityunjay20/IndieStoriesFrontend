@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { img1, img2,img3 } from "../constants";
-import Sidebar from '../Components/GlobalComponents/Sidebar';
-import LastOrder from '../Components/GlobalComponents/LastOrder';
-import ReorderItems from '../Components/GlobalComponents/ReorderItems';
-import PopularProducts from '../Components/GlobalComponents/PopularProducts';
-import AccountSection from '../Components/GlobalComponents/AccountSection';
-import Address from '../Components/GlobalComponents/Address';
-import OrderProduct from '../Components/GlobalComponents/OrderProduct';
+import Sidebar from '../Components/UserDashboard/Sidebar';
+import LastOrder from '../Components/UserDashboard/LastOrder';
+import ReorderItems from '../Components/UserDashboard/ReorderItems';
+import PopularProducts from '../Components/UserDashboard/PopularProducts';
+import AccountSection from '../Components/UserDashboard/AccountSection';
+import Address from '../Components/UserDashboard/Address';
+import OrderProduct from '../Components/UserDashboard/OrderProduct';
 
 export default function UserDashboard() {
     const [selectedSection, setSelectedSection] = useState('dashboard');

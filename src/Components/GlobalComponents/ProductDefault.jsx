@@ -9,14 +9,20 @@ import {
 } from "@material-tailwind/react";
 import { cards } from "../../constants";
 import ShoppingCartDialog from "../GlobalComponents/ShoppingCartDialog";
+import { useNavigate } from 'react-router';
 
-export default function ProductDefault() {
+export default function ProductDefault({productMJ}) {
   const [size, setSize] = useState(null);
 
   const handleOpen = (value) => setSize(value);
+  const navigate = useNavigate();
+  const handleProductClick = (productId) => {
+    console.log("handleclick called");
+    navigate(`/shop/${productId}`);
+  };
   
   return (
-    <div className="flex flex-wrap justify-center">
+    <div className="grid grid-cols-4 mx-auto w-full">
       {cards.map((card, index) => (
         <Card
           key={index}
@@ -27,10 +33,13 @@ export default function ProductDefault() {
             floated={false}
             className="h-48 overflow-hidden relative"
           >
+            
             <img
               src={card.image}
               alt="card-image"
-              className="h-full w-full object-cover transition-transform transform"
+              className="h-full w-full object-cover transition-transform transform hover:cursor-pointer"
+              onClick={() => handleProductClick(productMJ)}
+              
             />
           </CardHeader>
           <CardBody className="p-4">
@@ -62,6 +71,7 @@ export default function ProductDefault() {
             <Button
               ripple={false}
               className="w-full md:w-1/2 bg-pink-500 text-white shadow-none hover:bg-black hover:shadow-lg"
+              
             >
               Buy Now
             </Button>
