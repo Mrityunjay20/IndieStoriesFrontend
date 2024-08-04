@@ -211,6 +211,7 @@ export default function HomePage() {
         </div>
 
         {/* Products  */}
+        
 
         <div className="overflow-hidden text-center p-2 sm:py-4 md:py-6 ">
           <h2 className="text-xl text-center pt-6">~ Products ~</h2>

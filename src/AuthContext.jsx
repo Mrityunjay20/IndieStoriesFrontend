@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
     });
     return unsubscribe;
   }, []);
+  
 
   const memoizedValue = useMemo(() => ({ currentUser }), [currentUser]);
 

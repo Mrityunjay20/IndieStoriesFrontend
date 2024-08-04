@@ -9,6 +9,7 @@ const fontFamily = {
 const buttons1 = [
     { name: "Home", link: "/" },
     { name: "Our Stori", link: "/ourstori" },
+    
     { name: "Our Impact", link: "/ourimpact" },
     { name: "Shop", link: "/shop" },
   ];

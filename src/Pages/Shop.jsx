@@ -13,6 +13,7 @@ export default function Shop(){
         const data = await axios.get("http://localhost:3000/shop/");
         setShopData(data); // Set the fetched data
       } catch (err) {
+        
         setError(err);
       } finally {
         setLoading(false);
@@ -20,6 +21,7 @@ export default function Shop(){
     };
 
     fetchData();
+
   }, []);
 
   console.log(shopData.data);

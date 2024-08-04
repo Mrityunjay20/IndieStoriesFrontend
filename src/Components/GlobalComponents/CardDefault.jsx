@@ -49,8 +49,10 @@ import { useEffect, useState } from "react";
               <img
                 src={card.imageUrl[0]}
                 alt="card-image"
+
                 className="h-full w-full object-cover"
               />
+              
             </CardHeader>
             <CardBody>
               <div className="mb-2 flex items-center justify-between">

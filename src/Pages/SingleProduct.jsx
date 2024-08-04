@@ -84,6 +84,8 @@ export default function SingleProduct() {
           <div className="flex items-center mb-2">
             <p className="text-gray-600">Indie Stori</p>
             <img className="h-8 w-8 mx-4" src={VegIcon} />
+            
+
           </div>
 
           <h1 className="text-5xl font-serif font-semibold">{shopData.name}</h1>
@@ -93,6 +95,7 @@ export default function SingleProduct() {
             <span className="text-black opacity-60 text-lg mx-4">
               (4.9 Reviews)
             </span>
+
           </p>
           <div className="flex my-4">
             <img className="w-8 h-8 mr-4" src={RandomIcon} />
