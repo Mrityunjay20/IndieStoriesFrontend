@@ -50,7 +50,7 @@ export default function SingleProduct() {
     <>
       <div className="w-full lg:flex my-12">
         <div className="sm:w-full md:w-full lg:w-1/2 mx-auto">
-          <div className="w-4/5 grid gap-4 mx-auto">
+          <div className="w-full grid gap-4 mx-auto px-8">
             <div>
               <img
                 className="h-auto w-full max-w-full rounded-lg object-cover object-center md:h-[480px]"
@@ -72,7 +72,7 @@ export default function SingleProduct() {
             </div>
           </div>
         </div>
-        <div className="sm:w-full md:w-full lg:w-1/2 py-8 sm:mx-auto lg:mx-auto px-20">
+        <div className="sm:w-full px-8 md:w-full lg:w-1/2 py-8 sm:mx-auto lg:mx-auto lg:px-20">
           <div className="flex items-center mb-2">
             <p className="text-gray-600">Indie Stori</p>
             <img className="h-8 w-8 mx-4" src={VegIcon} />
