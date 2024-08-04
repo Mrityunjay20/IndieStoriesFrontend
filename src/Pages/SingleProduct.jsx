@@ -3,11 +3,10 @@ import {
   Accordion,
   AccordionHeader,
   AccordionBody,
-  ButtonGroup,
   Button,
   IconButton,
 } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import RandomIcon from "../assets/img1.jpg";
 import VegIcon from "../assets/Veg.png";
 import CardDefault from "../Components/GlobalComponents/CardDefault";
@@ -16,16 +15,22 @@ import UsesSection from "../Components/SingleProduct/userSection";
 import axios from "axios";
 
 export default function SingleProduct() {
-  const [shopData, setShopData] = useState(null); // Initialize as null
+  const [shopData, setShopData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [active, setActive] = useState("https://dummyimage.com/300");
+  const [open, setOpen] = useState(1);
+
   const params = useParams();
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/shop/${params.id}`);
-        setShopData(response.data); // Set the fetched data
+        const response = await axios.get(
+          `http://localhost:3000/shop/${params.id}`
+        );
+        setShopData(response.data);
+        setActive(response.data.bannerUrl);
       } catch (err) {
         setError(err);
       } finally {
@@ -34,7 +39,9 @@ export default function SingleProduct() {
     };
 
     fetchData();
-  }, [params.id]); // Add params.id to the dependency array
+  }, [params.id]);
+
+  const memoizedShopData = useMemo(() => shopData, [shopData]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -44,34 +51,7 @@ export default function SingleProduct() {
     return <div>Error: {error.message}</div>;
   }
 
-  const data = [
-    // Array of image objects
-    {
-      imgelink:
-        "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    },
-    {
-      imgelink:
-        "https://images.unsplash.com/photo-1432462770865-65b70566d673?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
-    },
-    {
-      imgelink:
-        "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
-    },
-    {
-      imgelink:
-        "https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80",
-    },
-    {
-      imgelink:
-        "https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80",
-    },
-  ];
-
-  const [active, setActive] = useState(
-    "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-  );
-  const [open, setOpen] = useState(1);
+  console.log(memoizedShopData);
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
   return (
@@ -87,11 +67,11 @@ export default function SingleProduct() {
               />
             </div>
             <div className="grid grid-cols-5 gap-4">
-              {data.map(({ imgelink }, index) => (
+              {shopData.imageUrl.map((imgsource, index) => (
                 <div key={index}>
                   <img
-                    onClick={() => setActive(imgelink)}
-                    src={imgelink}
+                    onClick={() => setActive(imgsource)}
+                    src={imgsource}
                     className="h-20 max-w-full cursor-pointer rounded-lg object-cover object-center"
                     alt="gallery-image"
                   />
@@ -106,14 +86,12 @@ export default function SingleProduct() {
             <img className="h-8 w-8 mx-4" src={VegIcon} />
           </div>
 
-          <h1 className="text-5xl font-serif font-semibold">
-            Himalayan Pahadi Salt
-          </h1>
-          <p className="mt-4">Best turmeric that you could get......</p>
+          <h1 className="text-5xl font-serif font-semibold">{shopData.name}</h1>
+          <p className="mt-4">{shopData.description}</p>
           <p className="text-yellow-800 text-2xl py-4">
             ★ ★ ★ ★ ★{" "}
             <span className="text-black opacity-60 text-lg mx-4">
-              (4.9 Based on 02 Reviews)
+              (4.9 Reviews)
             </span>
           </p>
           <div className="flex my-4">
@@ -124,12 +102,12 @@ export default function SingleProduct() {
           </div>
           <p>Paid Shipping</p>
           <h2 className="text-pink-400 text-lg">
-            SKU: <span className="text-black">WT-05789-567-78</span>
+            SKU: <span className="text-black">{shopData.sku}</span>
           </h2>
           <h2 className="text-pink-400 text-lg">
-            Category: <span className="text-black">Beverage</span>
+            Category: <span className="text-black">{shopData.category}</span>
           </h2>
-          <h1 className="text-3xl font-semibold my-4">Rs. 299.00</h1>
+          <h1 className="text-3xl font-semibold my-4">Rs. {shopData.price}</h1>
 
           {/* <div>
             <h1 className="text-xl my-4">Variants:</h1>
@@ -163,8 +141,13 @@ export default function SingleProduct() {
         </div>
       </div>
 
-
-      <UsesSection/>
+      <UsesSection
+        originDescription={shopData.origin}
+        benefitsDescription={shopData.benefits}
+        UsesDescription={shopData.uses}
+        IngredientsDescription={shopData.ingredients}
+        safetyDescription={shopData.safetyInformation}
+      />
 
       <section class="text-gray-600 body-font w-full">
         <div class="container mx-auto flex px-5 py-24 items-center justify-center w-full flex-col">

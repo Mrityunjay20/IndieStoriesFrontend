@@ -215,9 +215,9 @@ export default function HomePage() {
         <div className="overflow-hidden text-center p-2 sm:py-4 md:py-6 ">
           <h2 className="text-xl text-center pt-6">~ Products ~</h2>
           <h1 className="text-2xl sm:text-3xl font-bold pb-4">All of our products are organic & fresh.</h1>
-          <div className="py-4">
+          {/* <div className="py-4">
             <ProductDefault/>
-          </div>
+          </div> */}
         </div>
 
 

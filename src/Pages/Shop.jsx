@@ -22,6 +22,8 @@ export default function Shop(){
     fetchData();
   }, []);
 
+  console.log(shopData.data);
+
   if (loading) {
     return <div>Loading...</div>;
   }

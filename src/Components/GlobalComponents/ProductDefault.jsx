@@ -7,7 +7,6 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { cards } from "../../constants";
 import ShoppingCartDialog from "../GlobalComponents/ShoppingCartDialog";
 import { useNavigate } from 'react-router';
 
