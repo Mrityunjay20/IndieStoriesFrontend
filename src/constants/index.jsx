@@ -9,6 +9,7 @@ const fontFamily = {
 const buttons1 = [
     { name: "Home", link: "/" },
     { name: "Our Stori", link: "/ourstori" },
+    
     { name: "Our Impact", link: "/ourimpact" },
     { name: "Shop", link: "/shop" },
   ];
@@ -86,49 +87,6 @@ const socialMediaLinks = [
       image: img2,
       href: "#",
     },
-    {
-      id: 5,
-      title: 'Heading 5',
-      subtitle: 'Subtitle 1',
-      image: img1,
-      href: "#",
-    },
-    {
-      id: 6,
-      title: 'Heading 6',
-      subtitle: 'Subtitle 2',
-      image: img3,
-      href: "#",
-    },
-    {
-      id: 7,
-      title: 'Heading 7',
-      subtitle: 'Subtitle 3',
-      image: img1,
-      href: "#",
-    },
-    {
-      id: 8,
-      title: 'Heading 8',
-      subtitle: 'Subtitle 4',
-      image: img2,
-      href: "#",
-    },
-    {
-      id: 7,
-      title: 'Heading 7',
-      subtitle: 'Subtitle 3',
-      image: img1,
-      href: "#",
-    },
-    {
-      id: 8,
-      title: 'Heading 8',
-      subtitle: 'Subtitle 4',
-      image: img2,
-      href: "#",
-    },
-    
   ];
 
 

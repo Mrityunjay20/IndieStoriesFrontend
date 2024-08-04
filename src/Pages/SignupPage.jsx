@@ -1,5 +1,7 @@
+import { signInWithPopup } from 'firebase/auth';
 import React, { useRef } from 'react';
 import img1 from '../assets/img3.jpg';
+import { auth, provider } from '../firebaseConfig';
 
 const Signup = () => {
     const nameRef = useRef();
@@ -12,10 +14,21 @@ const Signup = () => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
 
+        
         console.log('Name:', name);
         console.log('Email:', email);
         console.log('Password:', password);
     }
+
+    const signInWithGoogle = async () => {
+        try {
+          const result = await signInWithPopup(auth, provider);
+          // Handle sign-in success (e.g., save user info)
+          console.log(result.user);
+        } catch (error) {
+          console.error("Error signing in with Google: ", error);
+        }
+      };
 
     return (
         <div className="flex h-screen bg-black">
@@ -28,32 +41,33 @@ const Signup = () => {
                         placeholder="Name" 
                         className="w-full p-3 mb-4 border rounded" 
                         ref={nameRef}
-                        required 
+
                     />
                     <input 
                         type="email" 
                         placeholder="Email" 
                         className="w-full p-3 mb-4 border rounded" 
                         ref={emailRef}
-                        required 
+
                     />
                     <input 
                         type="password" 
                         placeholder="Password" 
                         className="w-full p-3 mb-4 border rounded" 
                         ref={passwordRef}
-                        required 
+
                     />
                     <button 
-                        type="submit" 
+                        
                         className="w-full p-3 mb-4 bg-black text-white shadow-lg">
                         SIGN UP
                     </button>
-                    <button className="w-full p-3 mb-4 border flex items-center justify-center shadow-lg">
+                    
+                </form>
+                <button onClick={signInWithGoogle} className="w-full p-3 mb-4 border flex items-center justify-center shadow-lg">
                         <i class="fa-brands fa-google p-2"></i>
                         Continue with Google
                     </button>
-                </form>
                 
                 <p>Already have an account? <a href="#" className="text-blue-500">Log in</a></p>
             </div>
