@@ -7,16 +7,45 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RandomIcon from "../assets/img1.jpg";
 import VegIcon from "../assets/Veg.png";
 import CardDefault from "../Components/GlobalComponents/CardDefault";
 import SingleReview from "../Components/SingleProduct/SingleReview";
 import UsesSection from "../Components/SingleProduct/userSection";
+import axios from "axios";
 
 export default function SingleProduct() {
-  const { id } = useParams();
+  const [shopData, setShopData] = useState(null); // Initialize as null
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const params = useParams();
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/shop/${params.id}`);
+        setShopData(response.data); // Set the fetched data
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [params.id]); // Add params.id to the dependency array
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
   const data = [
+    // Array of image objects
     {
       imgelink:
         "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
@@ -29,7 +58,6 @@ export default function SingleProduct() {
       imgelink:
         "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
     },
-
     {
       imgelink:
         "https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80",
@@ -39,13 +67,13 @@ export default function SingleProduct() {
         "https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80",
     },
   ];
+
   const [active, setActive] = useState(
     "https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
   );
   const [open, setOpen] = useState(1);
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
-
   return (
     <>
       <div className="w-full lg:flex my-12">
