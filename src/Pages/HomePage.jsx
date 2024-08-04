@@ -7,7 +7,7 @@ import ResponsiveCard from "../Components/GlobalComponents/ResponsiveCard";
 import ProductDefault from "../Components/GlobalComponents/ProductDefault";
 import BlogCard from "../Components/GlobalComponents/BlogCard";
 import CarouselDefault from "../Components/GlobalComponents/CarouselDefault";
-import { testimonials,slides,fontFamily,metricsData,cards,cardsData,products,blogData, upcomingData } from "../constants";
+import { testimonials,brandpartners,slides,fontFamily,metricsData,cards,cardsData,products,blogData, upcomingData } from "../constants";
 import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
 import img3 from "../assets/img3.jpg";
@@ -62,7 +62,7 @@ export default function HomePage() {
 
       {/* CountUp 5000+ Customers */}
 
-      <div className="p-4 grid grid-cols-2 sm:grid-cols-4 bg-customYellow">
+      <div className="p-4 grid grid-cols-2 sm:grid-cols-3 bg-customYellow">
         {metricsData.map((metric) => (
           <div
             key={metric.id}
@@ -108,6 +108,17 @@ export default function HomePage() {
           </div>
 
 
+
+        {/* Brand Partners */}
+
+      <div className="p-4 space-y-4 sm:p-6 sm:space-y-8 my-16">
+        <h2 className="text-3xl md:text-4xl font-semibold text-center my-12">-Brand Partners-</h2>
+        <Testimonials
+          autoSlide={true}
+          autoSlideInterval={9000}
+          testimonials={brandpartners}
+        />
+      </div>
 
         {/* Testimonials */}
 
@@ -200,13 +211,14 @@ export default function HomePage() {
         </div>
 
         {/* Products  */}
+        
 
         <div className="overflow-hidden text-center p-2 sm:py-4 md:py-6 ">
           <h2 className="text-xl text-center pt-6">~ Products ~</h2>
           <h1 className="text-2xl sm:text-3xl font-bold pb-4">All of our products are organic & fresh.</h1>
-          <div className="py-4">
+          {/* <div className="py-4">
             <ProductDefault/>
-          </div>
+          </div> */}
         </div>
 
 

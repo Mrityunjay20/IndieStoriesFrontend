@@ -9,6 +9,7 @@ const fontFamily = {
 const buttons1 = [
     { name: "Home", link: "/" },
     { name: "Our Stori", link: "/ourstori" },
+    
     { name: "Our Impact", link: "/ourimpact" },
     { name: "Shop", link: "/shop" },
   ];
@@ -86,49 +87,6 @@ const socialMediaLinks = [
       image: img2,
       href: "#",
     },
-    {
-      id: 5,
-      title: 'Heading 5',
-      subtitle: 'Subtitle 1',
-      image: img1,
-      href: "#",
-    },
-    {
-      id: 6,
-      title: 'Heading 6',
-      subtitle: 'Subtitle 2',
-      image: img3,
-      href: "#",
-    },
-    {
-      id: 7,
-      title: 'Heading 7',
-      subtitle: 'Subtitle 3',
-      image: img1,
-      href: "#",
-    },
-    {
-      id: 8,
-      title: 'Heading 8',
-      subtitle: 'Subtitle 4',
-      image: img2,
-      href: "#",
-    },
-    {
-      id: 7,
-      title: 'Heading 7',
-      subtitle: 'Subtitle 3',
-      image: img1,
-      href: "#",
-    },
-    {
-      id: 8,
-      title: 'Heading 8',
-      subtitle: 'Subtitle 4',
-      image: img2,
-      href: "#",
-    },
-    
   ];
 
 
@@ -181,6 +139,33 @@ const slides = [img1, img1, img1];
         image: img2,
         paragraph: "‘’Tempor incididunt ut labore et dolore magna aliquat enim veniam quis nostru exercitation ullamco laboris nis aliquip.’’",
         heading1: "Sinira Fro",
+        heading2: "Managing Director",
+      },
+  ];
+
+  const brandpartners = [
+    {
+      image: img1,
+      paragraph: "‘’Tempor incididunt ut labore et dolore magna aliquat enim veniam quis nostru exercitation ullamco laboris nis aliquip.’’",
+      heading1: "one",
+      heading2: "Director",
+    },
+    {
+      image: img2,
+      paragraph: "‘’Tempor incididunt ut labore et dolore magna aliquat enim veniam quis nostru exercitation ullamco laboris nis aliquip.’’",
+      heading1: "two",
+      heading2: "Managing Director",
+    },
+    {
+      image: img3,
+      paragraph: "‘’Tempor incididunt ut labore et dolore magna aliquat enim veniam quis nostru exercitation ullamco laboris nis aliquip.’’",
+      heading1: "three",
+      heading2: "Managing Director",
+    },
+    {
+        image: img2,
+        paragraph: "‘’Tempor incididunt ut labore et dolore magna aliquat enim veniam quis nostru exercitation ullamco laboris nis aliquip.’’",
+        heading1: "four",
         heading2: "Managing Director",
       },
   ];
@@ -307,14 +292,6 @@ const products = [
       timer: 65,
     },
     {
-      id: 3,
-      imageSrc: img3,
-      endValue: 5000,
-      startValue: 0,
-      description: 'Customers',
-      timer: 20,
-    },
-    {
       id: 4,
       imageSrc: img1,
       endValue: 5000,
@@ -325,5 +302,5 @@ const products = [
   ];
   
 
-export {img1,img2,img3, buttons1,buttons2,fontFamily, socialMediaLinks, footerInformation,cardsData, cards,blogData, slides,testimonials,upcomingData, footerDiscover, ourStoriInfo, team, partners, products, metricsData };
+export {img1,img2,img3, buttons1,buttons2,fontFamily, socialMediaLinks, footerInformation,cardsData, cards,blogData, slides,testimonials,brandpartners,upcomingData, footerDiscover, ourStoriInfo, team, partners, products, metricsData };
   

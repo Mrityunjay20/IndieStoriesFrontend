@@ -7,11 +7,11 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { cards } from "../../constants";
+
 import ShoppingCartDialog from "../GlobalComponents/ShoppingCartDialog";
 import { useNavigate } from 'react-router';
 
-export default function ProductDefault({productMJ}) {
+export default function ProductDefault({productData ,productMJ}) {
   const [size, setSize] = useState(null);
 
   const handleOpen = (value) => setSize(value);
@@ -23,7 +23,7 @@ export default function ProductDefault({productMJ}) {
   
   return (
     <div className="grid grid-cols-4 mx-auto w-full">
-      {cards.map((card, index) => (
+      {productData.map((card, index) => (
         <Card
           key={index}
           className="w-full sm:w-72 md:w-80 m-4 transition-transform transform hover:scale-105"
@@ -35,23 +35,23 @@ export default function ProductDefault({productMJ}) {
           >
             
             <img
-              src={card.image}
+              src={card.imageUrl}
               alt="card-image"
               className="h-full w-full object-cover transition-transform transform hover:cursor-pointer"
-              onClick={() => handleProductClick(productMJ)}
+              onClick={() => handleProductClick(card.id)}
               
             />
           </CardHeader>
           <CardBody className="p-4">
             <div className="mb-2 flex flex-col md:flex-row items-center justify-between">
               <Typography color="blue-gray" className="font-medium">
-                {card.title}
+                {card.name}
               </Typography>
               <Typography color="blue-gray" className="font-medium mt-2 md:mt-0">
-                {card.subtitle}
+                RS. {card.price}
               </Typography>
             </div>
-            <p className="w-full text-center sm:text-left">short description</p>
+            <p className="w-full text-left sm:text-left">{}</p>
             <Typography
               variant="small"
               color="gray"
