@@ -1,10 +1,19 @@
-import React, { useRef } from 'react';
+import { signInWithPopup } from 'firebase/auth';
+import React, { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import img1 from '../../assets/img2.jpg';
+import { login } from '../../service/GlobalState';
+import { auth, provider } from '../../firebaseConfig';
+
 
 const Login = () => {
     const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
+    const navigate = useNavigate();
+    const isLoggedIn = useSelector((state) => state.loginauth.isLoggedIn); 
+    const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,11 +26,31 @@ const Login = () => {
         console.log('Password:', password);
     }
 
+    const signInWithGoogle = async () => {
+        console.log("button clicked")
+        try {
+          const result = await signInWithPopup(auth, provider);
+          // Handle sign-in success (e.g., save user info)
+          console.log(result.user);
+          dispatch(login({ data: result.user }))
+        } catch (error) {
+          console.error("Error signing in with Google: ", error);
+        }
+    };
+
+    useEffect(() => {
+        console.log('isLoggedIn changed:', isLoggedIn);
+        if (isLoggedIn) {
+          navigate('/userdashboard');
+        }
+    }, [isLoggedIn, navigate]);
+
     return (
         <div className="flex h-screen bg-black">
             <img className='hidden md:flex md:w-1/2 object-cover opacity-70' src={img1}></img>
             <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-white p-8">
                 <h2 className="text-2xl font-bold mb-6">LOG IN</h2>
+                <div className='w-max'>
                 <form className="w-full max-w-xs xl:text-xl" onSubmit={handleSubmit}>
                     <input 
                         type="text" 
@@ -49,11 +78,13 @@ const Login = () => {
                         className="w-full p-3 mb-4 bg-black text-white shadow-lg">
                         LOGIN
                     </button>
-                    <button className="w-full p-3 mb-4 border flex items-center justify-center shadow-lg">
+                    
+                </form>
+                <button onClick={signInWithGoogle} className="w-full -p:8 p-3 mb-4 border flex items-center justify-center shadow-lg">
                         <i class="fa-brands fa-google p-2"></i>
                         Continue with Google
                     </button>
-                </form>
+                </div>
                 
                 <p>Already have an account? <a href="#" className="text-blue-500">Log in</a></p>
             </div>

@@ -1,8 +1,16 @@
 // src/components/Sidebar.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 export default function Sidebar({ onSelectSection }) {
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
+
+
+    function logoutFunction(){
+        localStorage.clear();
+        navigate('/login');
+    }
 
     return (
         <div>
@@ -31,7 +39,7 @@ export default function Sidebar({ onSelectSection }) {
                         <li onClick={() => { onSelectSection('account'); setIsOpen(false); }} className="cursor-pointer mb-2">Account</li>
                         <li onClick={() => { onSelectSection('orders'); setIsOpen(false); }} className="cursor-pointer mb-2">Orders</li>
                         <li onClick={() => { onSelectSection('addresses'); setIsOpen(false); }} className="cursor-pointer mb-2">Addresses</li>
-                        <li onClick={() => { onSelectSection('logout'); setIsOpen(false); }} className="cursor-pointer mb-2">Logout</li>
+                        <li onClick={logoutFunction} className="cursor-pointer mb-2">Logout</li>
                     </ul>
                 </nav>
             </aside>
