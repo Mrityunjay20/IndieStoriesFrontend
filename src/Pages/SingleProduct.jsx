@@ -58,7 +58,7 @@ export default function SingleProduct() {
     <>
       <div className="w-full lg:flex my-12">
         <div className="sm:w-full md:w-full lg:w-1/2 mx-auto">
-          <div className="w-full grid gap-4 mx-auto px-8">
+          <div className="w-full grid gap-4 mx-auto px-8 lg:pl-24">
             <div>
               <img
                 className="h-auto w-full max-w-full rounded-lg object-cover object-center md:h-[480px]"
@@ -88,16 +88,16 @@ export default function SingleProduct() {
 
           </div>
 
-          <h1 className="text-5xl font-serif font-semibold">{shopData.name}</h1>
+          <h1 className="text-5xl font-sans font-semibold">{shopData.name}</h1>
           <p className="mt-4">{shopData.description}</p>
-          <p className="text-yellow-800 text-2xl py-4">
+          <p className="text-yellow-800 text-2xl py-2 lg:py-4">
             ★ ★ ★ ★ ★{" "}
-            <span className="text-black opacity-60 text-lg mx-4">
+            <span className="text-black opacity-60 text-lg lg:mx-4">
               (4.9 Reviews)
             </span>
 
           </p>
-          <div className="flex my-4">
+          <div className="flex my-2 lg:my-4">
             <img className="w-8 h-8 mr-4" src={RandomIcon} />
             <img className="w-8 h-8 mx-4" src={RandomIcon} />
             <img className="w-8 h-8 mx-4" src={RandomIcon} />
@@ -134,10 +134,10 @@ export default function SingleProduct() {
             </div>
           </div>
           <div className="flex">
-            <Button className="mr-2 py-4 px-6 bg-blue-700" variant="filled">
+            <Button className="mr-2 py-4 px-6 bg-white border-4 hover:border-blue-400 hover:bg-white hover:text-blue-400 shadow-none bg-blue-400 border-blue-400 hover:text-blue-400 hover:shadow-lg">
               Buy Now
             </Button>
-            <Button className="mx-2 py-4 px-6 bg-pink-500" variant="filled">
+            <Button className="mx-2 py-4 px-6 hover:bg-white border-4 hover:border-pink-400 hover:text-pink-400 shadow-none bg-pink-400 border-pink-400 text-white hover:shadow-lg">
               Add to cart
             </Button>
           </div>

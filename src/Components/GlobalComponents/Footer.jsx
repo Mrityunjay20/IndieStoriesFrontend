@@ -4,17 +4,17 @@ import { socialMediaLinks, footerInformation,footerDiscover } from "../../consta
 export default function Footer(){
     return(<>
     <div className=" overflow-hidden footer-top flex space-x-4 md:justify-evenly text-black bg-white p-8 pb-12 ">
-        <div className="w-1/2 md:w-48  ">
+        <div className="w-1/2 md:w-48  pr-2">
             <img className="w-32 my-8" src={logo}></img>
             <p className="hidden md:flex text-md font-bold max-w-48 text-justify ml-4 ">We work with a passion of taking challenges and creating new ones in advertising sector.</p>
             
 
-            <div className="socialLogo grid grid-cols-2 sm:grid-cols-4  md:flex md:flex-row justify-start gap-4 py-4">
+            <div className="socialLogo grid grid-cols-4  md:flex md:flex-row justify-start gap-2  py-4">
                 {socialMediaLinks.map((social, index) => (
                     <a
                     key={index}
                     href={social.href}
-                    className="flex text-customBrown items-center justify-center md:justify-start size-8 text-2xl rounded-sm  transform transition-transform duration-300 ease-in-out hover:scale-125"
+                    className="flex text-customBrown items-center justify-center md:justify-start size-8 text-xl md:text-2xl px-4 rounded-sm  transform transition-transform duration-300 ease-in-out hover:scale-125"
                     >
                     <i className={social.iconClass}></i>
                     </a>

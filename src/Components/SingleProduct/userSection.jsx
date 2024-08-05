@@ -43,7 +43,7 @@ export default function UsesSection({originDescription,benefitsDescription, Uses
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 920);
     };
 
     window.addEventListener("resize", handleResize);
@@ -54,49 +54,55 @@ export default function UsesSection({originDescription,benefitsDescription, Uses
     };
   }, []);
 
+  
+
   return (
-    <div className="w-3/4 mx-auto">
+    <div className="mx-auto">
       {isMobile ? (
-        <div>
-          <Select
+        <div className="px-8">
+          <select
             value={activeTab}
-            onChange={(e) => setActiveTab(e)}
-            className="w-full mb-4"
+            onChange={(e) => setActiveTab(e.target.value)}
+            className="w-full mb-4 p-2 border border-gray-900 border-2 rounded-lg bg-gray-200 border-gray-400 text-black font-semibold"
           >
             {data.map(({ label, value }) => (
-              <Option key={value} value={value}>
+              <option key={value} value={value} className="bg-gray-200 ">
                 {label}
-              </Option>
+              </option>
             ))}
-          </Select>
+          </select>
           {data.map(({ value, desc }) => (
             <div
               key={value}
-              className={`${
-                activeTab === value ? "block" : "hidden"
-              } mt-4 text-center `}
+              className={`${activeTab === value ? 'block' : 'hidden'} mt-4 text-center`}
             >
               {desc}
             </div>
           ))}
         </div>
       ) : (
-        <Tabs value={activeTab} onChange={(value) => setActiveTab(value)}>
-          <TabsHeader>
+        <div className="px-8 lg:px-24">
+          <div className="flex justify-between mb-4 bg-gray-200">
             {data.map(({ label, value }) => (
-              <Tab key={value} value={value}>
+              <button
+                key={value}
+                className={`px-4 py-2 font-bold rounded-sm w-full ${
+                  activeTab === value ? 'bg-gray-900 text-white' : ' text-black'
+                }`}
+                onClick={() => setActiveTab(value)}
+              >
                 {label}
-              </Tab>
+              </button>
             ))}
-          </TabsHeader>
-          <TabsBody>
+          </div>
+          <div>
             {data.map(({ value, desc }) => (
-              <TabPanel key={value} value={value}>
+              <div key={value} className={`${activeTab === value ? 'block' : 'hidden'} mt-4 text-center`}>
                 {desc}
-              </TabPanel>
+              </div>
             ))}
-          </TabsBody>
-        </Tabs>
+          </div>
+        </div>
       )}
     </div>
   );

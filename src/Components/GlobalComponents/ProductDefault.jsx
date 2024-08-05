@@ -7,7 +7,6 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-
 import ShoppingCartDialog from "../GlobalComponents/ShoppingCartDialog";
 import { useNavigate } from 'react-router';
 
@@ -22,11 +21,11 @@ export default function ProductDefault({productData ,productMJ}) {
   };
   
   return (
-    <div className="grid grid-cols-4 mx-auto w-full">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mx-auto w-full">
       {productData.map((card, index) => (
         <Card
           key={index}
-          className="w-full sm:w-72 md:w-80 m-4 transition-transform transform hover:scale-105"
+          className="flex flex-col w-full shadow-md max-w-80 mx-auto transition-transform transform hover:scale-105"
         >
           <CardHeader
             shadow={false}
@@ -42,12 +41,13 @@ export default function ProductDefault({productData ,productMJ}) {
               
             />
           </CardHeader>
-          <CardBody className="p-4">
+          <CardBody className="p-4 grow">
             <div className="mb-2 flex flex-col md:flex-row items-center justify-between">
-              <Typography color="blue-gray" className="font-medium">
+              <Typography color="blue-gray" className="font-medium md:text-left ">
                 {card.name}
               </Typography>
-              <Typography color="blue-gray" className="font-medium mt-2 md:mt-0">
+              <Typography color="blue-gray" className=" font-medium w-48 mt-2 md:mt-0 md:text-right">
+                <span className='line-through opacity-40 pr-2 md:pr-0 '>RS. {card.price} </span> <span className='hidden md:flex h-0'><br/></span>
                 RS. {card.price}
               </Typography>
             </div>
@@ -63,14 +63,14 @@ export default function ProductDefault({productData ,productMJ}) {
           <CardFooter className="pt-0 flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
             <Button
               ripple={false}
-              className="w-full md:w-1/2 bg-blue-500 text-white shadow-none hover:bg-black hover:shadow-lg"
+              className="w-full md:w-1/2 bg-white border-4 hover:border-blue-400 hover:bg-white hover:text-blue-400 shadow-none bg-blue-400 border-blue-400 hover:text-blue-400 hover:shadow-lg"
               onClick={() => handleOpen("xl")}
             >
               Add to Cart
             </Button>
             <Button
               ripple={false}
-              className="w-full md:w-1/2 bg-pink-500 text-white shadow-none hover:bg-black hover:shadow-lg"
+              className="w-full md:w-1/2 hover:bg-white border-4 hover:border-pink-400 hover:text-pink-400 shadow-none bg-pink-400 border-pink-400 text-white hover:shadow-lg"
               
             >
               Buy Now
