@@ -70,7 +70,7 @@ export default function UserDashboard() {
             case 'orders':
                 return (
                 <div className='w-full'>
-                    <div className=" px-4 space-y-4 overflow-y-auto">
+                    <div className=" px-2 space-y-2 md:space-y-4 overflow-y-auto">
                         {orders.map(order => (
                             <OrderProduct
                                 key={order.id}
