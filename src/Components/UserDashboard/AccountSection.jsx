@@ -8,7 +8,7 @@ export default function Account(){
                 <p>Email</p>
                 <p>+91 99 9999 9999</p>
             </div>
-            <div className="flex justify-end">
+            <div className="flex p-4 sm:justify-end">
                 <button className="px-8 py-2 bg-black text-white rounded-lg ">RESET PASSWORD</button>
             </div>
         </div>

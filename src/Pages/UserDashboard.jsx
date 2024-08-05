@@ -50,12 +50,12 @@ export default function UserDashboard() {
         switch (selectedSection) {
             case 'dashboard':
                 return (
-                    <div className='flex w-full' >
-                        <div className="w-1/2 p-4">
+                    <div className='flex flex-col sm:flex-row' >
+                        <div className="w-full sm:w-1/2 p-2 sm:p-4">
                             <LastOrder />
                             <ReorderItems />
                         </div>
-                        <div className="w-1/2 p-4">
+                        <div className="w-full sm:w-1/2 p-2 sm:p-4">
                             
                             <PopularProducts />
                         </div>
@@ -93,7 +93,7 @@ export default function UserDashboard() {
     };
 
     return (
-        <div className="flex w-full ">
+        <div className="sm:flex">
             <Sidebar onSelectSection={setSelectedSection} />
             {renderSection()}
             

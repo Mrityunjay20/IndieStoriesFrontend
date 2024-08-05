@@ -72,7 +72,7 @@ export default function ShoppingCartDialog({ size, handleOpen }) {
     >
       <DialogHeader><p className='px-4'>SHOPPING CART</p></DialogHeader>
       <DialogBody>
-        <div className="max-h-[50vh] px-4 space-y-4 overflow-y-auto">
+        <div className="max-h-[50vh] px-1 md:px-4 space-y-4 md:space-y-4 overflow-y-auto">
           {products.map(product => (
             <CartProduct
               key={product.id}
@@ -85,7 +85,7 @@ export default function ShoppingCartDialog({ size, handleOpen }) {
         </div>
       </DialogBody>
       <DialogFooter>
-        <div className="w-full p-8">
+        <div className="w-full px-2 md:px-4">
           <div className="footer flex justify-between">
             <div>
               <p>Net Total</p>
