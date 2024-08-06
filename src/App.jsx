@@ -9,6 +9,7 @@ import OurImpactPage from './Pages/OurImpact'
 import OurStoryPage from './Pages/OurStori'
 import Shop from './Pages/Shop'
 import SingleProduct from './Pages/SingleProduct'
+import AdminDashboard from './Pages/AdminDashboard'
 import LoginPage from './Pages/UserPages/LoginPage'
 import SignupPage from './Pages/UserPages/SignupPage'
 import UserDashboard from './Pages/UserPages/UserDashboard'
@@ -57,6 +58,10 @@ function App() {
       {
         path:'/userdashboard',
         element:<UserDashboard/>
+      },
+      {
+        path:'/admindashboard',
+        element:<AdminDashboard/>
       },
       {
         path:"/checkout",

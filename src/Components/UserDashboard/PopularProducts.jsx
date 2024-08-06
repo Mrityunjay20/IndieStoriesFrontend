@@ -76,7 +76,7 @@ export default function PopularProducts() {
       
     
     return (
-        <Card className="w-96">
+        <Card className="w-full"> 
         <CardBody>
         <div className="mb-4 flex items-center justify-between">
           <Typography variant="h5" color="blue-gray" className="">

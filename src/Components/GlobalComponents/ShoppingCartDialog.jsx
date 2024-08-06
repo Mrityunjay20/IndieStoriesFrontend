@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CartProduct from "../GlobalComponents/CartProduct";
 import {
   Button,
@@ -7,7 +7,7 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
- 
+
 export default function ShoppingCartDialog({ size, handleOpen }) {
   const [products, setProducts] = useState([
     {
@@ -18,35 +18,43 @@ export default function ShoppingCartDialog({ size, handleOpen }) {
       image: 'https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
     },
     {
-        id: 2,
-        name: 'Product two',
-        price: 200,
-        quantity: 1,
-        image: 'https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-      },
-      {
-        id: 3,
-        name: 'Product three',
-        price: 10,
-        quantity: 1,
-        image: 'https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-      },
-      {
-        id: 4,
-        name: 'Product four',
-        price: 120,
-        quantity: 1,
-        image: 'https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-      },
-    // Add more products as needed
+      id: 2,
+      name: 'Product two',
+      price: 200,
+      quantity: 1,
+      image: 'https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+    },
+    {
+      id: 3,
+      name: 'Product three',
+      price: 10,
+      quantity: 1,
+      image: 'https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+    },
+    {
+      id: 4,
+      name: 'Product four',
+      price: 120,
+      quantity: 1,
+      image: 'https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+    },
   ]);
 
+  const [totals, setTotals] = useState({
+    netTotal: 0,
+    taxes: 0,
+    shippingCharges: 90, // Fixed shipping charge
+    total: 0
+  });
+
   const handleQuantityChange = (id, delta) => {
-    setProducts(products.map(product =>
-      product.id === id
-        ? { ...product, quantity: product.quantity + delta }
-        : product
-    ));
+    setProducts(products => 
+      products.map(product =>
+        product.id === id
+          ? { ...product, quantity: Math.max(0, product.quantity + delta) }
+          : product
+      ).filter(product => product.quantity > 0)
+    );
   };
 
   const handleBuyNow = (id) => {
@@ -56,7 +64,19 @@ export default function ShoppingCartDialog({ size, handleOpen }) {
   const handleDelete = (id) => {
     setProducts(products.filter(product => product.id !== id));
   };
- 
+
+  useEffect(() => {
+    const netTotal = products.reduce((total, product) => total + product.price * product.quantity, 0);
+    const taxes = netTotal * 0.028; // 2.8% tax
+    const total = netTotal + taxes + totals.shippingCharges;
+    setTotals({
+      netTotal,
+      taxes,
+      shippingCharges: totals.shippingCharges,
+      total
+    });
+  }, [products, totals.shippingCharges]);
+
   return (
     <Dialog
       open={
@@ -94,10 +114,10 @@ export default function ShoppingCartDialog({ size, handleOpen }) {
               <p>Total</p>
             </div>
             <div>
-              <p>Rs. 1200.00</p>
-              <p>Rs. 34.00</p>
-              <p>Rs. 40.00</p>
-              <p>Rs. 1274.00</p>
+              <p>Rs. {totals.netTotal.toFixed(2)}</p>
+              <p>Rs. {totals.taxes.toFixed(2)}</p>
+              <p>Rs. {totals.shippingCharges.toFixed(2)}</p>
+              <p>Rs. {totals.total.toFixed(2)}</p>
             </div>
           </div>
           <div className="text-right pt-4">
