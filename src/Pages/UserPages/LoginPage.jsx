@@ -90,7 +90,7 @@ const Login = () => {
                     </button>
                     
                 </form>
-                <button onClick={signInWithGoogle} className="w-full -p:8 p-3 mb-4 border flex items-center justify-center shadow-lg">
+                <button onClick={signInWithGoogle} className="w-full p-3 mb-4 border flex items-center justify-center shadow-lg">
                         <i class="fa-brands fa-google p-2"></i>
                         Continue with Google
                     </button>

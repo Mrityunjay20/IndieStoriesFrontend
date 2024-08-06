@@ -70,10 +70,10 @@ export default function Footer(){
     <div className="footer-bottom bg-customBlue w-full text-white flex justify-between items-center px-4 md:px-16 py-6">
         <h2 className="text-xs text-left w-1/3 sm:w-1/2  font-bold">© 2024 IndieStori - IndieStori. All rights reserved.</h2>
         <div className="space-x-2 sm:space-x-4 md:space-x-6 text-2xl">
-            <i class="fa-brands fa-cc-visa"></i>
-            <i class="fa-brands fa-cc-mastercard"></i>
-            <i class="fa-brands fa-cc-discover"></i>
-            <i class="fa-brands fa-cc-apple-pay"></i>
+            <i className="fa-brands fa-cc-visa"></i>
+            <i className="fa-brands fa-cc-mastercard"></i>
+            <i className="fa-brands fa-cc-discover"></i>
+            <i className="fa-brands fa-cc-apple-pay"></i>
         </div>
     </div>
     </>)

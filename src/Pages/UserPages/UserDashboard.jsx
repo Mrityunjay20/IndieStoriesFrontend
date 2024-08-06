@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { img1, img2,img3 } from "../../constants";
 import Sidebar from '../../Components/UserDashboard/Sidebar';
 import LastOrder from '../../Components/UserDashboard/LastOrder';
@@ -7,9 +7,20 @@ import PopularProducts from '../../Components/UserDashboard/PopularProducts';
 import AccountSection from '../../Components/UserDashboard/AccountSection';
 import Address from '../../Components/UserDashboard/Address';
 import OrderProduct from '../../Components/UserDashboard/OrderProduct';
+import { useNavigate } from 'react-router';
 
 export default function UserDashboard() {
     const [selectedSection, setSelectedSection] = useState('dashboard');
+    const navigate = useNavigate();
+    const isLoggedIn = localStorage.getItem("auth");
+    
+    useEffect(() => {
+        if(!isLoggedIn){
+            console.log(isLoggedIn);
+            return navigate("/login");
+        }
+    }, [isLoggedIn])
+    
 
     const [orders, setOrders] = useState([
         {

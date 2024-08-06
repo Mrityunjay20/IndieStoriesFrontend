@@ -9,7 +9,7 @@ export default function Sidebar({ onSelectSection }) {
 
     function logoutFunction(){
         localStorage.clear();
-        navigate('/login');
+        navigate('/signup');
     }
 
     return (
@@ -25,7 +25,7 @@ export default function Sidebar({ onSelectSection }) {
             </div>
 
             {/* Sidebar */}
-            <aside className={`fixed top-28 text-white rounded-tr-md sm:top-0 left-0 h-full bg-gray-900 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-200 ease-in-out sm:relative sm:translate-x-0 sm:w-40 sm:block w-3/4 z-40`}>
+            <aside className={`fixed top-28 text-white rounded-tr-md sm:top-0 left-0 h-screen bg-gray-900 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-200 ease-in-out sm:relative sm:translate-x-0 sm:w-40 sm:block w-3/4 z-40`}>
                 <div className='flex p-4 justify-between'>                   
                     <div className="text-2xl font-bold">Indie Stori</div>
                     <i 
@@ -38,7 +38,7 @@ export default function Sidebar({ onSelectSection }) {
                         <li onClick={() => { onSelectSection('dashboard'); setIsOpen(false); }} className="cursor-pointer mb-2">Dashboard</li>
                         <li onClick={() => { onSelectSection('account'); setIsOpen(false); }} className="cursor-pointer mb-2">Account</li>
                         <li onClick={() => { onSelectSection('orders'); setIsOpen(false); }} className="cursor-pointer mb-2">Orders</li>
-                        <li onClick={() => { onSelectSection('addresses'); setIsOpen(false); }} className="cursor-pointer mb-2">Addresses</li>
+                        {/* <li onClick={() => { onSelectSection('addresses'); setIsOpen(false); }} className="cursor-pointer mb-2">Addresses</li> */}
                         <li onClick={logoutFunction} className="cursor-pointer mb-2">Logout</li>
                     </ul>
                 </nav>

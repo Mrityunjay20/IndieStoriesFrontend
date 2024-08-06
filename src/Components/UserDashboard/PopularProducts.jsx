@@ -79,7 +79,7 @@ export default function PopularProducts() {
         <Card className="w-full"> 
         <CardBody>
         <div className="mb-4 flex items-center justify-between">
-          <Typography variant="h5" color="blue-gray" className="">
+          <Typography variant="h5" color="blue-gray">
             Latest Products
           </Typography>
           <Typography

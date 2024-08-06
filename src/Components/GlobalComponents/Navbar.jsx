@@ -129,7 +129,7 @@ function NavListMenu() {
         allowHover={true}
       >
         <MenuHandler>
-          <Typography as="div" variant="medium" className="font-semibold">
+          <Typography as="div" variant="paragraph" className="font-semibold">
             <ListItem
               className="flex items-center gap-2 py-2 pr-4 font-semibold text-customBrown"
               selected={isMenuOpen || isMobileMenuOpen}
@@ -174,19 +174,10 @@ function NavList() {
   return (
 	<>
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 lg:w-8/10 items-start">
-      {/* <Typography
-        as="a"
-        href="/"
-        variant="medium"
-        color="blue-gray"
-        className="font-semibold text-customBrown"
-      >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">Home</ListItem>
-      </Typography> */}
       <Typography
         as="a"
         href="/ourstori"
-        variant="medium"
+        variant="paragraph"
         color="blue-gray"
         className="font-semibold text-customBrown"
       >
@@ -197,7 +188,7 @@ function NavList() {
       <Typography
         as="a"
         href="/ourimpact"
-        variant="medium"
+        variant="paragraph"
         color="blue-gray"
         className="font-semibold text-customBrown"
       >
@@ -209,7 +200,7 @@ function NavList() {
       <Typography
         as="a"
         href="/connect"
-        variant="medium"
+        variant="paragraph"
         color="blue-gray"
         className="font-semibold text-customBrown"
       >
@@ -220,7 +211,7 @@ function NavList() {
       <Typography
         as="a"
         href="#"
-        variant="medium"
+        variant="paragraph"
         color="blue-gray"
         className="font-semibold text-customBrown"
       >
@@ -240,7 +231,7 @@ function NavList() {
       <Typography
         as="a"
         href="/search"
-        variant="medium"
+        variant="paragraph"
         color="blue-gray"
         className="font-semibold text-customBrown py-2 ml-4"
       >
@@ -256,7 +247,7 @@ function NavList() {
 
         as="a"
         href={loggedIn?"/userdashboard":"/login"}
-        variant="medium"
+        variant="paragraph"
         color="blue-gray"
         className="font-semibold text-customBrown py-2 ml-4"
       >

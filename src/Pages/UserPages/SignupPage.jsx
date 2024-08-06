@@ -1,3 +1,5 @@
+import { Alert } from '@material-tailwind/react';
+import axios from 'axios';
 import { signInWithPopup } from 'firebase/auth';
 import React, { useEffect, useRef } from 'react';
 import { useState } from 'react';
@@ -16,6 +18,26 @@ const Signup = () => {
     const navigate = useNavigate();
     const isLoggedIn = useSelector((state) => state.loginauth.isLoggedIn); 
     const dispatch = useDispatch()
+    const [userExists, setUserExists] = useState(false);
+
+
+    async function createUser(email,name,firebaseuid){
+        const createUserData = {
+            email: email,
+            name: name,
+            firebaseUid: firebaseuid
+        }
+        const resultuser = await axios.post("http://localhost:3000/user/signup",createUserData);
+        console.log(resultuser);
+        setErrorBar();
+    }
+
+    function setErrorBar(){
+        setIsError(true);
+        setTimeout(() => {
+            setIsError(false);
+        }, 5000);
+    }
 
 
     const handleSubmit = async(e) => {
@@ -26,6 +48,8 @@ const Signup = () => {
         const result = await signUp(email,password);
         
     }
+
+
 
     const signInWithGoogle = async () => {
         try {
@@ -52,19 +76,27 @@ const Signup = () => {
             localStorage.setItem("uid", user.uid || "");
     
             // Dispatch the login action
-            dispatch({
-                type: 'auth/login',
-                payload: serializableUser
-            });
+            // dispatch({
+            //     type: 'auth/login',
+            //     payload: serializableUser
+            // });
+
+            const checkUser = await axios.get("http://localhost:3000/user/signup",user.email);
+            if(checkUser){
+                setErrorBar(true);
+            }
+            console.log(checkUser);
+
+
+            //createUser(user.email,user.displayName,user.uid);
         } catch (error) {
             console.error("Error signing in with Google: ", error);
         }
     };
     
-
+        
       
       useEffect(() => {
-        console.log('isLoggedIn changed:', isLoggedIn);
         if (localStorage.getItem('auth')) {
           navigate('/userdashboard');
         }
@@ -72,9 +104,12 @@ const Signup = () => {
 
 
     return (
+        <>
         <div className="flex h-screen bg-black">
             <img className='hidden md:flex md:w-1/2 object-cover opacity-70' src={img1}></img>
-            <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-white p-8">
+            <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-white p-10">
+            {userExists?
+                <Alert color='red' className='w-1/2 mx-auto my-2 z-50'>This email already exists in our system, try logging in</Alert>:null}
                 <h2 className="text-2xl font-bold mb-6  text-center">CREATE AN ACCOUNT</h2>
                 <form className="w-full max-w-xs xl:text-xl" onSubmit={handleSubmit}>
                     <input 
@@ -106,15 +141,16 @@ const Signup = () => {
                     </button>
                     
                 </form>
-                <button onClick={signInWithGoogle} className="w-full p-3 mb-4 border flex items-center justify-center shadow-lg">
-                        <i className="fa-brands fa-google p-2"></i>
+                <button onClick={signInWithGoogle} className=" w-full max-w-xs p-3 mx-2 mb-4 border flex items-center justify-center shadow-lg">
+                        <i className="fa-brands -px-4 fa-google p-2"></i>
                         Continue with Google
-                    </button>
+                </button>
                 
                 
                 <p>Already have an account? <a href="#" className="text-blue-500">Log in</a></p>
             </div>
         </div>
+        </>
     );
 }
 
