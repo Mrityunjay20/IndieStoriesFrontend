@@ -30,8 +30,18 @@ const Login = () => {
         console.log("button clicked")
         try {
           const result = await signInWithPopup(auth, provider);
+          const user = result.user;
           // Handle sign-in success (e.g., save user info)
           console.log(result.user);
+          localStorage.clear();
+            localStorage.setItem("auth", user.auth || ""); // Adjust if auth is not needed
+            localStorage.setItem("accesstoken", user.accessToken || "");
+            localStorage.setItem("displayName", user.displayName || "");
+            localStorage.setItem("email", user.email || "");
+            localStorage.setItem("photoURL", user.photoURL || "");
+            localStorage.setItem("uid", user.uid || "");
+    
+            // Dispatch the login action
           dispatch(login({ data: result.user }))
         } catch (error) {
           console.error("Error signing in with Google: ", error);
@@ -40,7 +50,7 @@ const Login = () => {
 
     useEffect(() => {
         console.log('isLoggedIn changed:', isLoggedIn);
-        if (isLoggedIn) {
+        if (localStorage.getItem('auth')) {
           navigate('/userdashboard');
         }
     }, [isLoggedIn, navigate]);

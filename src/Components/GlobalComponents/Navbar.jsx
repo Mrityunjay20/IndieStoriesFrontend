@@ -35,6 +35,7 @@ import {
 
 import IndieLogo from "../../assets/HorizontalLogo.png";
 import ShoppingCartDialog from "./ShoppingCartDialog";
+import { useSelector } from "react-redux";
 
 const navListMenuItems = [
   {
@@ -166,6 +167,8 @@ function NavListMenu() {
 function NavList() {
 
 	const [size, setSize] = useState(null);
+  const loggedIn = localStorage.getItem('email');
+  
 
   const handleOpen = (value) => setSize(value);
   return (
@@ -250,8 +253,9 @@ function NavList() {
         })}
       </Typography>
       <Typography
+
         as="a"
-        href="/userdashboard"
+        href={loggedIn?"/userdashboard":"/login"}
         variant="medium"
         color="blue-gray"
         className="font-semibold text-customBrown py-2 ml-4"

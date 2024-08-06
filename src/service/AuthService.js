@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, Go
 import { auth, provider } from '../firebaseConfig';
 
 export const signUp = async (email, password) => {
-  await createUserWithEmailAndPassword(auth, email, password);
+  return await createUserWithEmailAndPassword(auth, email, password);
 };
 
 

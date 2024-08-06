@@ -47,7 +47,7 @@ export default function ProductDefault({productData ,productMJ}) {
                 {card.name}
               </Typography>
               <Typography color="blue-gray" className=" font-medium w-48 mt-2 md:mt-0 md:text-right">
-                <span className='line-through opacity-40 pr-2 md:pr-0 '>RS. {card.price} </span> <span className='hidden md:flex h-0'><br/></span>
+                <span className='line-through opacity-40 pr-2 md:pr-0 '>RS. {card.discountprice} </span> <span className='hidden md:flex h-0'><br/></span>
                 RS. {card.price}
               </Typography>
             </div>

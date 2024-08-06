@@ -1,11 +1,13 @@
 import React from "react";
 
+
+//do not fetch details from local storage fetch it from backend
 export default function Account(){
     return(
         <div className="p-8 w-full">
-            <h2 className="pb-4">USERNAME</h2>
+            <h2 className="pb-4">{localStorage.getItem("displayName")}</h2>
             <div>
-                <p>Email</p>
+                <p>{localStorage.getItem("email")}</p>
                 <p>+91 99 9999 9999</p>
             </div>
             <div className="flex p-4 sm:justify-end">

@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from 'react-router';
 
 import img1 from '../../assets/img3.jpg';
 import { auth, provider } from '../../firebaseConfig';
-import { signInWithGoogle } from '../../service/AuthService';
+import { signInWithGoogle, signUp } from '../../service/AuthService';
 import { login } from '../../service/GlobalState';
 
 const Signup = () => {
@@ -18,12 +18,13 @@ const Signup = () => {
     const dispatch = useDispatch()
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-
+        const result = await signUp(email,password);
+        
     }
 
     const signInWithGoogle = async () => {
@@ -44,6 +45,7 @@ const Signup = () => {
             // Clear localStorage and set items
             localStorage.clear();
             localStorage.setItem("auth", user.auth || ""); // Adjust if auth is not needed
+            localStorage.setItem("accesstoken", user.accessToken || "");
             localStorage.setItem("displayName", user.displayName || "");
             localStorage.setItem("email", user.email || "");
             localStorage.setItem("photoURL", user.photoURL || "");

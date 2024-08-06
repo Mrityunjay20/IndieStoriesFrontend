@@ -24,8 +24,6 @@ export default function Shop(){
 
   }, []);
 
-  console.log(shopData);
-
   if (loading) {
     return <div>Loading...</div>;
   }
