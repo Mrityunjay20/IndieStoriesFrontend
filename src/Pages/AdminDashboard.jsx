@@ -172,9 +172,9 @@ export default function AdminDashboard() {
                 );
             case 'products':
                 return (
-                    <div>
+                    <div className='w-full'>
                         <AddProduct onAddProduct={handleAddProduct} />
-                        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+                        <div className="grid w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
                             {products.map(product => (
                                 <Products key={product.id} product={product} />
                             ))}
