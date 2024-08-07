@@ -11,7 +11,7 @@ export default function Sidebar({ onSelectSection }) {
     function logoutFunction(){
         localStorage.clear();
         auth.signOut();
-        navigate('/signup');
+        navigate('/login');
     }
 
     return (

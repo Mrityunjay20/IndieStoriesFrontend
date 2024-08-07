@@ -6,7 +6,8 @@ import img1 from '../../assets/img2.jpg';
 import { login } from '../../service/GlobalState';
 import { auth, provider } from '../../firebaseConfig';
 import ForgotPasswordDialog from './ForgotPassword';
-import { Button } from '@material-tailwind/react';
+import { Alert, Button } from '@material-tailwind/react';
+import { useState } from 'react';
 
 
 const Login = () => {
@@ -15,6 +16,8 @@ const Login = () => {
     const navigate = useNavigate();
     const isLoggedIn = useSelector((state) => state.loginauth.isLoggedIn); 
     const dispatch = useDispatch()
+
+    const [rightUser, setRightUser] = useState(true);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -34,7 +37,11 @@ const Login = () => {
                 // Dispatch the login action
               dispatch(login({ data: result.user }))
         } catch (error) {
+            setRightUser(false);
             console.error("Error signing in with Google: ", error);
+            setInterval(() => {
+                setRightUser(true);
+            }, 5000);
         }
     }
 
@@ -72,6 +79,7 @@ const Login = () => {
         <div className="flex h-screen bg-black">
             <img className='hidden md:flex md:w-1/2 object-cover opacity-70' src={img1}></img>
             <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-white p-8">
+                {!rightUser ? <Alert color='red' className='w-3/4 text-justify mx-auto mb-4 z-50'>Invalid Email or Password</Alert>:null}
                 <h2 className="text-2xl font-bold mb-6">LOG IN</h2>
                 <div className='w-max'>
                 <form className="w-full max-w-xs xl:text-xl" onSubmit={handleSubmit}>
