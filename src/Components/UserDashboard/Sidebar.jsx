@@ -1,6 +1,7 @@
 // src/components/Sidebar.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { auth } from '../../firebaseConfig';
 
 export default function Sidebar({ onSelectSection }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +10,7 @@ export default function Sidebar({ onSelectSection }) {
 
     function logoutFunction(){
         localStorage.clear();
+        auth.signOut();
         navigate('/signup');
     }
 

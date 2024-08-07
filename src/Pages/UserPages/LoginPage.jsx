@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router';
 import img1 from '../../assets/img2.jpg';
 import { login } from '../../service/GlobalState';
 import { auth, provider } from '../../firebaseConfig';
+import ForgotPasswordDialog from './ForgotPassword';
+import { Button } from '@material-tailwind/react';
 
 
 const Login = () => {
-    const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
     const navigate = useNavigate();
@@ -17,11 +18,9 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const name = nameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
 
-        console.log('Name:', name);
         console.log('Email:', email);
         console.log('Password:', password);
     }
@@ -29,7 +28,9 @@ const Login = () => {
     const signInWithGoogle = async () => {
         console.log("button clicked")
         try {
+            
           const result = await signInWithPopup(auth, provider);
+          
           const user = result.user;
           // Handle sign-in success (e.g., save user info)
           console.log(result.user);
@@ -63,13 +64,6 @@ const Login = () => {
                 <div className='w-max'>
                 <form className="w-full max-w-xs xl:text-xl" onSubmit={handleSubmit}>
                     <input 
-                        type="text" 
-                        placeholder="Name" 
-                        className="w-full p-3 mb-4 border rounded" 
-                        ref={nameRef}
-                        required 
-                    />
-                    <input 
                         type="email" 
                         placeholder="Email" 
                         className="w-full p-3 mb-4 border rounded" 
@@ -83,20 +77,21 @@ const Login = () => {
                         ref={passwordRef}
                         required 
                     />
-                    <button 
+                    <Button 
                         type="submit" 
-                        className="w-full p-3 mb-4 bg-black text-white shadow-lg">
+                        className="w-full p-3 mb-4 text-white shadow-lg">
                         LOGIN
-                    </button>
+                    </Button>
                     
                 </form>
-                <button onClick={signInWithGoogle} className="w-full p-3 mb-4 border flex items-center justify-center shadow-lg">
+                <Button onClick={signInWithGoogle} className="w-full p-3 mb-4 border flex items-center justify-center shadow-lg">
                         <i class="fa-brands fa-google p-2"></i>
                         Continue with Google
-                    </button>
+                    </Button>
                 </div>
                 
-                <p>Already have an account? <a href="#" className="text-blue-500">Log in</a></p>
+                <p>Don't have an account? <a href="/signup" className="text-blue-500">Sign up</a></p>
+                <ForgotPasswordDialog/>
             </div>
         </div>
     );
