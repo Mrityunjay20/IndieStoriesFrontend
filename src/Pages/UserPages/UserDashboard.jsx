@@ -20,7 +20,7 @@ export default function UserDashboard() {
         }
     }, [auth])
     
-
+    console.log(auth.currentUser);
     const [orders, setOrders] = useState([
         {
           id: 1,

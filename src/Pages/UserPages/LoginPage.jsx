@@ -33,13 +33,12 @@ const Login = () => {
                 localStorage.setItem("email", user.email || "");
                 localStorage.setItem("photoURL", user.photoURL || "");
                 localStorage.setItem("uid", user.uid || "");
-        
-                // Dispatch the login action
-              dispatch(login({ data: result.user }))
+                console.log("proceed login");
+                navigate('/userdashboard');
         } catch (error) {
             setRightUser(false);
             console.error("Error signing in with Google: ", error);
-            setInterval(() => {
+            setTimeout(() => {
                 setRightUser(true);
             }, 5000);
         }
@@ -69,8 +68,7 @@ const Login = () => {
     };
 
     useEffect(() => {
-        console.log('isLoggedIn changed:', isLoggedIn);
-        if (localStorage.getItem('auth')) {
+        if (localStorage.getItem('accesstoken')) {
           navigate('/userdashboard');
         }
     }, [isLoggedIn, navigate]);
