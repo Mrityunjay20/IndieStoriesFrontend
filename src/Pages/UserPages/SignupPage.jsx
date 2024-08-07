@@ -13,7 +13,6 @@ const Signup = () => {
     const passwordRef = useRef();
     const navigate = useNavigate();
     const isLoggedIn = useSelector((state) => state.loginauth.isLoggedIn); 
-    const dispatch = useDispatch();
     const [userExists, setUserExists] = useState(false);
     const [error, setError] = useState(null);
 
@@ -53,6 +52,7 @@ const Signup = () => {
                     localStorage.setItem("uid", user.uid || "");
                     
                     await createUser(user.email, user.uid);
+                    dispatch(login({ data: result.user }))
                     navigate('/userdashboard');
                 } catch (signUpError) {
                     console.error("Email esists in our system please try loggin in", signUpError);
@@ -60,7 +60,7 @@ const Signup = () => {
                 }
             } else {
                 console.error("Error checking user existence:", error);
-                setError("Error checking user existence. Please try again.");
+                setError("Email esists in our system please try loggin in");
             }
         }
     };
