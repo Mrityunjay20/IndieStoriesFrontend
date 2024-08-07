@@ -1,4 +1,4 @@
-import { signInWithPopup } from 'firebase/auth';
+import { signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -16,17 +16,29 @@ const Login = () => {
     const isLoggedIn = useSelector((state) => state.loginauth.isLoggedIn); 
     const dispatch = useDispatch()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        const email = emailRef.current.value;
-        const password = passwordRef.current.value;
-
-        console.log('Email:', email);
-        console.log('Password:', password);
+        try {
+            const email = emailRef.current.value;
+            const password = passwordRef.current.value;
+            const result = await signInWithEmailAndPassword(auth, email,password);
+            const user = result.user;
+              localStorage.clear();
+                localStorage.setItem("auth", user.auth || ""); // Adjust if auth is not needed
+                localStorage.setItem("accesstoken", user.accessToken || "");
+                localStorage.setItem("displayName", user.displayName || "");
+                localStorage.setItem("email", user.email || "");
+                localStorage.setItem("photoURL", user.photoURL || "");
+                localStorage.setItem("uid", user.uid || "");
+        
+                // Dispatch the login action
+              dispatch(login({ data: result.user }))
+        } catch (error) {
+            console.error("Error signing in with Google: ", error);
+        }
     }
 
     const signInWithGoogle = async () => {
-        console.log("button clicked")
         try {
             
           const result = await signInWithPopup(auth, provider);
