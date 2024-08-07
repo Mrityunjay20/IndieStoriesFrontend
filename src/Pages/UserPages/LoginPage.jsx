@@ -33,7 +33,6 @@ const Login = () => {
                 localStorage.setItem("email", user.email || "");
                 localStorage.setItem("photoURL", user.photoURL || "");
                 localStorage.setItem("uid", user.uid || "");
-                console.log("proceed login");
                 navigate('/userdashboard');
         } catch (error) {
             setRightUser(false);
@@ -51,7 +50,6 @@ const Login = () => {
           
           const user = result.user;
           // Handle sign-in success (e.g., save user info)
-          console.log(result.user);
           localStorage.clear();
             localStorage.setItem("auth", user.auth || ""); // Adjust if auth is not needed
             localStorage.setItem("accesstoken", user.accessToken || "");

@@ -30,7 +30,6 @@ import { useEffect, useState } from "react";
     fetchData();
   }, []);
 
-  console.log(shopData.data);
 
   if (loading) {
     return <div>Loading...</div>;

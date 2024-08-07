@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import CartProduct from "../GlobalComponents/CartProduct";
 import {
   Button,
@@ -7,96 +7,71 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateQuantity, removeFromCart } from "../../service/CartReducer";
+import { getCart } from "../../service/cartApiService";
+import { auth } from "../../firebaseConfig";
+import axios from "axios";
 
 export default function ShoppingCartDialog({ size, handleOpen }) {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: 'Product one',
-      price: 100,
-      quantity: 2,
-      image: 'https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-    },
-    {
-      id: 2,
-      name: 'Product two',
-      price: 200,
-      quantity: 1,
-      image: 'https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-    },
-    {
-      id: 3,
-      name: 'Product three',
-      price: 10,
-      quantity: 1,
-      image: 'https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-    },
-    {
-      id: 4,
-      name: 'Product four',
-      price: 120,
-      quantity: 1,
-      image: 'https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-    },
-  ]);
+  const cartItems = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
+  const { items, status, error } = useSelector((state) => state.cart);
 
   const [totals, setTotals] = useState({
     netTotal: 0,
     taxes: 0,
     shippingCharges: 90, // Fixed shipping charge
-    total: 0
+    total: 0,
   });
 
   const handleQuantityChange = (id, delta) => {
-    setProducts(products => 
-      products.map(product =>
-        product.id === id
-          ? { ...product, quantity: Math.max(0, product.quantity + delta) }
-          : product
-      ).filter(product => product.quantity > 0)
-    );
+    dispatch(updateQuantity({ productId: id, delta }));
   };
 
-  const handleBuyNow = (id) => {
-    console.log(`Buy Now for product id: ${id}`);
+  const handleBuyNow = async(id) => {
+    const valueofCart =await axios.post('http://localhost:3000/cart/',{
+      "firebaseUid": auth.currentUser.uid
+    } ) (auth.currentUser.uid);
+    console.log(await valueofCart)
   };
 
   const handleDelete = (id) => {
-    setProducts(products.filter(product => product.id !== id));
+    dispatch(removeFromCart({ productId: id }));
   };
 
   useEffect(() => {
-    const netTotal = products.reduce((total, product) => total + product.price * product.quantity, 0);
+    const netTotal = cartItems.reduce(
+      (total, product) => total + product.product.price * product.quantity,
+      0
+    );
     const taxes = netTotal * 0.028; // 2.8% tax
     const total = netTotal + taxes + totals.shippingCharges;
+
     setTotals({
       netTotal,
       taxes,
       shippingCharges: totals.shippingCharges,
-      total
+      total,
     });
-  }, [products, totals.shippingCharges]);
+  }, [cartItems, totals.shippingCharges]);
 
   return (
     <Dialog
-      open={
-        size === "xs" ||
-        size === "sm" ||
-        size === "md" ||
-        size === "lg" ||
-        size === "xl" ||
-        size === "xxl"
-      }
+      open={["xs", "sm", "md", "lg", "xl", "xxl"].includes(size)}
       size={size || "md"}
       handler={handleOpen}
     >
-      <DialogHeader><p className='px-4'>SHOPPING CART</p></DialogHeader>
+      <DialogHeader>
+        <p className="px-4">SHOPPING CART</p>
+      </DialogHeader>
       <DialogBody>
         <div className="max-h-[50vh] px-1 md:px-4 space-y-4 md:space-y-4 overflow-y-auto">
-          {products.map(product => (
+          {cartItems.map((product) => (
             <CartProduct
-              key={product.id}
-              product={product}
+              key={product.product.id} // Use unique id from product
+              product={product.product}
+              quantity={product.quantity}
               onQuantityChange={handleQuantityChange}
               onBuyNow={handleBuyNow}
               onDelete={handleDelete}

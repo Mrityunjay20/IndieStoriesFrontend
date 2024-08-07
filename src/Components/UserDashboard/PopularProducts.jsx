@@ -55,7 +55,6 @@ export default function PopularProducts() {
           try {
             const data = await axios.get("http://localhost:3000/shop/");
             setProductData(data.data); // Set the fetched data
-            console.log(productData);
           } catch (err) {
             setError(err);
           } finally {

@@ -19,7 +19,6 @@ export default function UserDashboard() {
             return navigate("/login");
         }
     }, [auth])
-    
     console.log(auth.currentUser);
     const [orders, setOrders] = useState([
         {

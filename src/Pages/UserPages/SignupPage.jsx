@@ -19,7 +19,6 @@ const Signup = () => {
     async function createUser(email, firebaseUid) {
         try {
             const createUserData = { email, firebaseUid };
-            console.log("Sending data:", createUserData);  // Log sent data
             const resultUser = await axios.post("http://localhost:3000/user/signup", createUserData);
             console.log("User created:", resultUser);
         } catch (error) {
@@ -31,17 +30,14 @@ const Signup = () => {
         e.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-
-        try {
-            // Check if the user already exists
-            await axios.get(`http://localhost:3000/user/${email}`);
-            setUserExists(true);
-            setTimeout(() => setUserExists(false), 10000);
-        } catch (error) {
-            if (error.response && error.response.status === 404) {
-                // User does not exist, proceed with sign up
-                try {
-                    const result = await createUserWithEmailAndPassword(auth, email, password);
+            const checkUser = await axios.get(`http://localhost:3000/user/${email}`);
+            if(checkUser){
+                setUserExists(true);
+                setError("Email exists in our system please try loggin in");
+                setTimeout(() => setUserExists(false), 10000);
+            }
+            else{
+                const result = await createUserWithEmailAndPassword(auth, email, password);
                     const user = result.user;
                     localStorage.clear();
                     localStorage.setItem("auth", user.auth || ""); // Adjust if auth is not needed
@@ -54,28 +50,14 @@ const Signup = () => {
                     await createUser(user.email, user.uid);
                     dispatch(login({ data: result.user }))
                     navigate('/userdashboard');
-                } catch (signUpError) {
-                    console.error("Email esists in our system please try loggin in", signUpError);
-                    setError("Email exists in our system please try loggin in");
-                }
-            } else {
-                console.error("Error checking user existence:", error);
-                setError("Email esists in our system please try loggin in");
             }
+            console.log("moving forward")
         }
-    };
 
     const signInWithGoogle = async () => {
         try {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
-
-            try {
-                const checkUser = await axios.get(`http://localhost:3000/user/${user.email}`);
-                if (checkUser) {
-                    setUserExists(true);
-                    setTimeout(() => setUserExists(false), 10000);
-                } else {
                     localStorage.clear();
                     localStorage.setItem("auth", user.auth || ""); // Adjust if auth is not needed
                     localStorage.setItem("accesstoken", user.accessToken || "");
@@ -85,11 +67,6 @@ const Signup = () => {
                     localStorage.setItem("uid", user.uid || "");
                     await createUser(user.email, user.uid);
                     navigate('/userdashboard');
-                }
-            } catch (error) {
-                console.error("Error checking user existence:", error);
-                setError("Error checking user existence. Please try again.");
-            }
         } catch (error) {
             console.error("Error signing in with Google:", error);
             setError("Error signing in with Google. Please try again.");

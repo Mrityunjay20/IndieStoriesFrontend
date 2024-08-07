@@ -9,16 +9,26 @@ import {
 } from "@material-tailwind/react";
 import ShoppingCartDialog from "../GlobalComponents/ShoppingCartDialog";
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../service/CartReducer';
 
-export default function ProductDefault({productData ,productMJ}) {
+export default function ProductDefault({productData}) {
   const [size, setSize] = useState(null);
 
   const handleOpen = (value) => setSize(value);
   const navigate = useNavigate();
   const handleProductClick = (productId) => {
-    console.log("handleclick called");
     navigate(`/shop/${productId}`);
   };
+
+
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product, quantity,price) => {
+    handleOpen("xl");
+    dispatch(addToCart({ product, quantity: 1 }));
+  };
+
   
   return (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mx-auto w-full">
@@ -64,7 +74,7 @@ export default function ProductDefault({productData ,productMJ}) {
             <Button
               ripple={false}
               className="w-full md:w-1/2 bg-white border-4 hover:border-blue-400 hover:bg-white hover:text-blue-400 shadow-none bg-blue-400 border-blue-400 hover:text-blue-400 hover:shadow-lg"
-              onClick={() => handleOpen("xl")}
+              onClick={() => handleAddToCart(card,1)}
             >
               Add to Cart
             </Button>

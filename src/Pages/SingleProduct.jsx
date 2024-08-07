@@ -51,7 +51,6 @@ export default function SingleProduct() {
     return <div>Error: {error.message}</div>;
   }
 
-  console.log(memoizedShopData);
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
   return (

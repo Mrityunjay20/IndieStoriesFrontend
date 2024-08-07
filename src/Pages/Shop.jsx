@@ -31,15 +31,13 @@ export default function Shop(){
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
-    
     return(
         <>
         <div className="text-center p-6">
             <h2 className="text-xl text-center py-6">~ Products ~</h2>
             <h1 className="text-4xl pb-4 font-bold">All of our products are organic & fresh.</h1>
             <div className="w-full ">
-                <ProductDefault productData={shopData.data} productMJ={"mj"} />
+                <ProductDefault productData={shopData.data} />
             </div>
         </div>
 
