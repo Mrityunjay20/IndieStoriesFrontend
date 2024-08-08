@@ -11,23 +11,22 @@ import {
 import ShoppingCartDialog from "../GlobalComponents/ShoppingCartDialog";
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../../service/CartReducer';
+import { addItem } from '../../service/CartSlice';
 
 export default function ProductDefault({productData}) {
   const [size, setSize] = useState(null);
-
   const handleOpen = (value) => setSize(value);
   const navigate = useNavigate();
   const handleProductClick = (productId) => {
     navigate(`/shop/${productId}`);
   };
+  const dispatch = useDispatch()
 
-
-  const dispatch = useDispatch();
-
-  const handleAddToCart = (product, quantity,price) => {
+  const handleAddToCart = (productId, quantity, name, price, imageUrl) => {
+    // const { productId, quantity, name, price, imageUrl } = product;
+    console.log(productId, quantity, name, price, imageUrl)
+    dispatch(addItem({ productId, quantity, name, price, imageUrl }));
     handleOpen("xl");
-    dispatch(addToCart({ product, quantity: 1 }));
   };
 
   
@@ -35,7 +34,7 @@ export default function ProductDefault({productData}) {
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mx-auto w-full">
       {productData.map((card, index) => (
         <Card
-          key={index}
+          key={card.productId}
           className="flex flex-col w-full shadow-md max-w-80 mx-auto transition-transform transform hover:scale-105"
         >
           <CardHeader
@@ -45,7 +44,7 @@ export default function ProductDefault({productData}) {
           >
             
             <img
-              src={card.imageUrl}
+              src={card.imageUrl[0]}
               alt="card-image"
               className="h-full w-full object-cover transition-transform transform hover:cursor-pointer"
               onClick={() => handleProductClick(card.id)}
@@ -75,7 +74,7 @@ export default function ProductDefault({productData}) {
             <Button
               ripple={false}
               className="w-full md:w-1/2 bg-white border-4 hover:border-blue-400 hover:bg-white shadow-none bg-blue-400 border-blue-400 hover:text-blue-400 hover:shadow-lg"
-              onClick={() => handleAddToCart(card,1)}
+              onClick={() => handleAddToCart(card.id,1 , card.name, card.price, card.imageUrl[0])}
             >
               Add to Cart
             </Button>

@@ -1,12 +1,22 @@
 //Redux store
 
 import { configureStore } from "@reduxjs/toolkit";
-import cartReducer from "./service/CartReducer.js";
 import authReducer from './service/GlobalState.js'
+import cartReducer from './service/CartSlice.js';
+import { loadState, saveState } from "./service/localStorage.js";
 
-export default configureStore({
+const preloadedState = loadState();
+
+export const store = configureStore({
     reducer:{
         loginauth:authReducer,
-        cart: cartReducer,
-    }
+        cart: cartReducer
+    },
+  preloadedState
 })
+
+store.subscribe(() => {
+    saveState({
+      cart: store.getState().cart
+    });
+  });

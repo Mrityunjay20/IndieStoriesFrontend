@@ -13,6 +13,8 @@ import CardDefault from "../Components/GlobalComponents/CardDefault";
 import SingleReview from "../Components/SingleProduct/SingleReview";
 import UsesSection from "../Components/SingleProduct/userSection";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addItem } from "../service/CartSlice";
 
 export default function SingleProduct() {
   const [shopData, setShopData] = useState(null);
@@ -40,6 +42,14 @@ export default function SingleProduct() {
 
     fetchData();
   }, [params.id]);
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (productId, quantity, name, price, imageUrl) => {
+    // const { productId, quantity, name, price, imageUrl } = product;
+     console.log(productId, quantity, name, price, imageUrl)
+     dispatch(addItem({ productId, quantity, name, price, imageUrl }));
+     handleOpen("xl");
+  };
 
   const memoizedShopData = useMemo(() => shopData, [shopData]);
 
@@ -137,9 +147,9 @@ export default function SingleProduct() {
             <Button className="mr-2 py-4 px-6 bg-white border-4 hover:border-blue-400 hover:bg-white hover:text-blue-400 shadow-none bg-blue-400 border-blue-400 hover:text-blue-400 hover:shadow-lg">
               Buy Now
             </Button>
-            <Button className="mx-2 py-4 px-6 hover:bg-white border-4 hover:border-pink-400 hover:text-pink-400 shadow-none bg-pink-400 border-pink-400 text-white hover:shadow-lg">
+            <button onClick={()=>handleAddToCart(shopData.id,1,shopData.name, shopData.price, shopData.imageUrl[0])} className="mx-2 py-4 px-6 hover:bg-white border-4 rounded-lg hover:border-pink-400 hover:text-pink-400 shadow-none bg-pink-400 border-pink-400 text-white hover:shadow-lg">
               Add to cart
-            </Button>
+            </button>
           </div>
         </div>
       </div>

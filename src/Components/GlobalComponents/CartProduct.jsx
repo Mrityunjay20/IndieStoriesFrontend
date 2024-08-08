@@ -22,11 +22,9 @@ const CartProduct = ({ product, quantity, onQuantityChange, onBuyNow, onDelete }
           </div>
         </div>
       </div>
-      <div className="space-y-4 flex flex-col items-end justify-between">
-        <i className="fa-solid fa-trash text-blue-gray-400" onClick={() => onDelete(product.id)}></i>
-        <button className='hidden p-2 sm:flex rounded-md font-medium bg-green-400 text-white w-20 text-xs md:text-sm items-center justify-center' onClick={() => onBuyNow(product.id)}>
-          Buy Now
-        </button>
+      <div className="space-y-4 w-max mx-2 flex flex-col items-end justify-between">
+        <i className="fa-solid fa-trash text-blue-gray-400 hover:cursor-pointer" onClick={() => onDelete(product.productId)}></i>
+        <p className='w-16 text-right'>Total:<br/> Rs.{product.price * product.quantity}</p>
       </div>
       
     </div>

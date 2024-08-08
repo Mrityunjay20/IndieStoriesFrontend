@@ -7,85 +7,35 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
-import axios from 'axios';
-import { auth } from '../../firebaseConfig';
+import { useDispatch, useSelector } from 'react-redux';
+import { calculateTotals, removeItem, updateQuantity } from '../../service/CartSlice';
 
 export default function ShoppingCartDialog({ size, handleOpen }) {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.cart.products);
+  const totals = useSelector((state) => state.cart.totals);
 
-  const [totals, setTotals] = useState({
-    netTotal: 0,
-    taxes: 0,
-    shippingCharges: 90, // Fixed shipping charge
-    total: 0
-  });
+  useEffect(() => {
+    dispatch(calculateTotals());
+  }, [products, dispatch]);
 
-  const refreshcart= async() =>{
-    const result = await axios.post('http://localhost:3000/cart/', auth.currentUser)
-    const modifiedData = result.data.map((obj)=>({
-      quantity: obj.quantity,
-      productId: obj.product.id,
-      name : obj.product.name,
-      price: obj.product.price,
-      imageUrl: obj.product.imageUrl[0]
-    }))
-    setProducts(modifiedData);
-    calculateTotals();
-  }
+  const handleQuantityChange = (productId, delta) => {
 
-  const handleQuantityChange = (productId, newQuantity) => {
-    setProducts((prevProducts) => 
-      prevProducts
-        .map((product) => 
-          product.productId === productId 
-            ? { ...product, quantity: product.quantity + newQuantity } 
-            : product
-        )
-        .filter((product) => product.quantity > 0) // Remove products with quantity less than 1
-    );
-    calculateTotals(); // Recalculate totals after updating the quantity
-  };
-  
-
-    
-
-  const handleBuyNow = (id) => {
-    console.log(`Buy Now for product id: ${id}`);
+    dispatch(updateQuantity({ productId, quantity: delta }));
   };
 
   const handleDelete = (id) => {
-    setProducts(products.filter(product => product.id !== id));
+    console.log(id);
+    dispatch(removeItem({ productId: id }));
   };
+  useEffect(() => {
+    dispatch(calculateTotals()); // Calculate totals whenever products change
+  }, [products, dispatch]);
 
-
-  
-  async function calculateTotals() {
-    // Ensure products.data is available and valid
-    if (!products || !products.data || !Array.isArray(products.data.product)) {
-      console.error("Products data is not available or invalid");
-      return;
-    }
-  
-    // Calculate the net total
-    const netTotal = products.reduce((total, product) => 
-      total + product.price * product.quantity, 
-      0
-    );
-  
-    // Calculate taxes
-    const taxes = netTotal * 0.028; // 2.8% tax
-  
-    // Calculate the final total including taxes and shipping charges
-    const total = netTotal + taxes + (totals?.shippingCharges || 0);
-  
-    // Set the totals
-    setTotals({
-      netTotal,
-      taxes,
-      shippingCharges: totals?.shippingCharges || 0,
-      total
-    });
+  function handleBuyNow(){
+    console.log("hello buy  now")
   }
+  
 
   return (
     <Dialog
@@ -105,7 +55,6 @@ export default function ShoppingCartDialog({ size, handleOpen }) {
         {products.length<1?
         <div className="max-h-[50vh] px-1 md:px-4 space-y-4 md:space-y-4 overflow-y-auto">
         <p>Add Products to your cart</p>
-        <Button onClick={refreshcart}>Refresh Cart</Button>
       </div>
         :
         <div className="max-h-[50vh] px-1 md:px-4 space-y-4 md:space-y-4 overflow-y-auto">
@@ -161,3 +110,67 @@ export default function ShoppingCartDialog({ size, handleOpen }) {
     </Dialog>
   );
 }
+
+
+
+
+
+
+
+
+
+// const [products, setProducts] = useState([]);
+
+//   const [totals, setTotals] = useState({
+//     netTotal: 0,
+//     taxes: 0,
+//     shippingCharges: 90, // Fixed shipping charge
+//     total: 0
+//   });
+
+//   const refreshcart= async() =>{
+//     const result = await axios.post('http://localhost:3000/cart/', auth.currentUser)
+//     const modifiedData = result.data.map((obj)=>({
+//       quantity: obj.quantity,
+//       productId: obj.product.id,
+//       name : obj.product.name,
+//       price: obj.product.price,
+//       imageUrl: obj.product.imageUrl[0]
+//     }))
+//     setProducts(modifiedData);
+//   }
+
+//   useEffect(() => {
+//     calculateTotals();
+//   }, [products]);
+
+//   const handleQuantityChange = (productId, newQuantity) => {
+//     setProducts((prevProducts) => 
+//       prevProducts
+//         .map((product) => 
+//           product.productId === productId 
+//             ? { ...product, quantity: product.quantity + newQuantity } 
+//             : product
+//         )
+//         .filter((product) => product.quantity > 0) // Remove products with quantity less than 1
+//     );// Recalculate totals after updating the quantity
+//   };
+  
+
+    
+
+//   const handleBuyNow = (id) => {
+//     console.log(`Buy Now for product id: ${id}`);
+//   };
+
+//   const handleDelete = (id) => {
+//     setProducts((prevProducts) => 
+//       prevProducts
+//         .map((product) => 
+//           product.productId === id 
+//             ? { ...product, quantity: product.quantity*0 } 
+//             : product
+//         )
+//         .filter((product) => product.quantity > 0)
+//     );
+//   };
