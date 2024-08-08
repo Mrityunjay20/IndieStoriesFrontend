@@ -1,17 +1,18 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:3000/cart'; // Replace with your API URL
+const API_URL = 'http://localhost:3000'; // Replace with your API URL
 
-export const getCart = async (user) => {
-  if (!user) {
+export const getCart = async (firebaseUid) => {
+  if (!firebaseUid) {
     throw new Error('No user is logged in');
   }
-  
-  const response = await axios.get(``,{'firebaseUid':user}); // Ensure the endpoint is correct
-  if (!response.ok) {
-    throw new Error('Failed to fetch cart data');
+
+  try {
+    const response = await axios.post('http://localhost:3000/cart', { firebaseUid });
+    return response.data; // Return the parsed data directly
+  } catch (error) {
+    console.error('Error fetching cart data:', error);
+    throw error; // Rethrow the error to be handled by the caller
   }
-  
-  return response.json();
 };
 
 export const addToCart = async (userId, productId, quantity) => {
@@ -19,8 +20,9 @@ export const addToCart = async (userId, productId, quantity) => {
   return response.data;
 };
 
-export const removeFromCart = async (userId, productId) => {
-  const response = await axios.delete(`${API_URL}/remove/${productId}`, { data: { id: userId } });
+export const removeFromCart1 = async (userId, productId) => {
+  console.log(userId, productId);
+  const response = await axios.delete(`${API_URL}/cart/remove/${productId}`, { data: { id: userId } });
   return response.data;
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import CartProduct from "../GlobalComponents/CartProduct";
 import {
   Button,
@@ -7,70 +7,112 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateQuantity, removeFromCart } from "../../service/CartReducer";
-import { getCart } from "../../service/cartApiService";
-import { auth } from "../../firebaseConfig";
-import axios from "axios";
+import axios from 'axios';
+import { auth } from '../../firebaseConfig';
 
 export default function ShoppingCartDialog({ size, handleOpen }) {
-  const cartItems = useSelector((state) => state.cart.items);
-  const dispatch = useDispatch();
-  const { items, status, error } = useSelector((state) => state.cart);
+  const [products, setProducts] = useState([]);
 
   const [totals, setTotals] = useState({
     netTotal: 0,
     taxes: 0,
     shippingCharges: 90, // Fixed shipping charge
-    total: 0,
+    total: 0
   });
 
-  const handleQuantityChange = (id, delta) => {
-    dispatch(updateQuantity({ productId: id, delta }));
-  };
+  const refreshcart= async() =>{
+    const result = await axios.post('http://localhost:3000/cart/', auth.currentUser)
+    const modifiedData = result.data.map((obj)=>({
+      quantity: obj.quantity,
+      productId: obj.product.id,
+      name : obj.product.name,
+      price: obj.product.price,
+      imageUrl: obj.product.imageUrl[0]
+    }))
+    setProducts(modifiedData);
+    calculateTotals();
+  }
 
-  const handleBuyNow = async(id) => {
-    const valueofCart =await axios.post('http://localhost:3000/cart/',{
-      "firebaseUid": auth.currentUser.uid
-    } ) (auth.currentUser.uid);
-    console.log(await valueofCart)
+  const handleQuantityChange = (productId, newQuantity) => {
+    setProducts((prevProducts) => 
+      prevProducts
+        .map((product) => 
+          product.productId === productId 
+            ? { ...product, quantity: product.quantity + newQuantity } 
+            : product
+        )
+        .filter((product) => product.quantity > 0) // Remove products with quantity less than 1
+    );
+    calculateTotals(); // Recalculate totals after updating the quantity
+  };
+  
+
+    
+
+  const handleBuyNow = (id) => {
+    console.log(`Buy Now for product id: ${id}`);
   };
 
   const handleDelete = (id) => {
-    dispatch(removeFromCart({ productId: id }));
+    setProducts(products.filter(product => product.id !== id));
   };
 
-  useEffect(() => {
-    const netTotal = cartItems.reduce(
-      (total, product) => total + product.product.price * product.quantity,
+
+  
+  async function calculateTotals() {
+    // Ensure products.data is available and valid
+    if (!products || !products.data || !Array.isArray(products.data.product)) {
+      console.error("Products data is not available or invalid");
+      return;
+    }
+  
+    // Calculate the net total
+    const netTotal = products.reduce((total, product) => 
+      total + product.price * product.quantity, 
       0
     );
+  
+    // Calculate taxes
     const taxes = netTotal * 0.028; // 2.8% tax
-    const total = netTotal + taxes + totals.shippingCharges;
-
+  
+    // Calculate the final total including taxes and shipping charges
+    const total = netTotal + taxes + (totals?.shippingCharges || 0);
+  
+    // Set the totals
     setTotals({
       netTotal,
       taxes,
-      shippingCharges: totals.shippingCharges,
-      total,
+      shippingCharges: totals?.shippingCharges || 0,
+      total
     });
-  }, [cartItems, totals.shippingCharges]);
+  }
 
   return (
     <Dialog
-      open={["xs", "sm", "md", "lg", "xl", "xxl"].includes(size)}
+      open={
+        size === "xs" ||
+        size === "sm" ||
+        size === "md" ||
+        size === "lg" ||
+        size === "xl" ||
+        size === "xxl"
+      }
       size={size || "md"}
       handler={handleOpen}
     >
-      <DialogHeader>
-        <p className="px-4">SHOPPING CART</p>
-      </DialogHeader>
+      <DialogHeader><p className='px-4'>SHOPPING CART</p></DialogHeader>
       <DialogBody>
+        {products.length<1?
         <div className="max-h-[50vh] px-1 md:px-4 space-y-4 md:space-y-4 overflow-y-auto">
-          {cartItems.map((product) => (
+        <p>Add Products to your cart</p>
+        <Button onClick={refreshcart}>Refresh Cart</Button>
+      </div>
+        :
+        <div className="max-h-[50vh] px-1 md:px-4 space-y-4 md:space-y-4 overflow-y-auto">
+          {products.map(product => (
             <CartProduct
-              key={product.product.id} // Use unique id from product
-              product={product.product}
+              key={product.productId}
+              product={product}
               quantity={product.quantity}
               onQuantityChange={handleQuantityChange}
               onBuyNow={handleBuyNow}
@@ -78,6 +120,8 @@ export default function ShoppingCartDialog({ size, handleOpen }) {
             />
           ))}
         </div>
+        }
+        
       </DialogBody>
       <DialogFooter>
         <div className="w-full px-2 md:px-4">

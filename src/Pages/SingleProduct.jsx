@@ -109,8 +109,9 @@ export default function SingleProduct() {
           <h2 className="text-pink-400 text-lg">
             Category: <span className="text-black">{shopData.category}</span>
           </h2>
-          <h1 className="text-3xl font-semibold my-4">Rs. {shopData.price}</h1>
           <p className="text-xl font-medium line-through opacity-60">   Rs. {shopData.discountprice}   </p>
+          <h1 className="text-3xl font-semibold my-4">Rs. {shopData.price}</h1>
+          
           {/* <div>
             <h1 className="text-xl my-4">Variants:</h1>
             <ButtonGroup className="border-pink-300" variant="outlined">
